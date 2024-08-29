@@ -1,4 +1,5 @@
-"""Dynamical systems in Python
+"""
+Dynamical systems in Python
 
 (M, T, D) or (T, D) convention for outputs
 
@@ -9,45 +10,26 @@ Requirements:
 + numba (optional, for faster integration)
 
 """
-from dataclasses import dataclass, field
+
+
+from dataclasses import dataclass, field, asdict
 import warnings
 import json
 import collections
 
 import os
 import sys
-import gzip
 
 curr_path = sys.path[0]
 
 import pkg_resources
-from functools import partial
-from itertools import starmap
-from typing import Optional, Iterable, Dict, Callable
 
-DATAPATH_CONTINUOUS = pkg_resources.resource_filename(
+data_path_continuous = pkg_resources.resource_filename(
     "dysts", "data/chaotic_attractors.json"
 )
-DATAPATH_DISCRETE = pkg_resources.resource_filename("dysts", "data/discrete_maps.json")
-
-
-## Check for optional datasets
-try:
-    from dysts_data.dataloader import get_datapath
-except ImportError:
-    _has_data = False
-else:
-    _has_data = True
-
-## Check for multiprocessing
-try:
-    from multiprocessing import Pool
-    _has_multiprocessing = True
-except ImportError:
-    _has_multiprocessing = False
+data_path_discrete = pkg_resources.resource_filename("dysts", "data/discrete_maps.json")
 
 import numpy as np
-import numpy.typing as npt
 
 from .utils import integrate_dyn, standardize_ts
 import importlib
@@ -113,7 +95,7 @@ class BaseDyn:
     def __init__(self, **entries):
         self.name = self.__class__.__name__
         self._load_data()
-
+        dfac = lambda: self._load_data()["parameters"]
         self.params = self._load_data()["parameters"]
         self.params.update(entries)
         # Cast all parameter arrays to numpy
@@ -130,11 +112,7 @@ class BaseDyn:
 
         for key in self._load_data().keys():
             setattr(self, key, self._load_data()[key])
-        
-        self.param_list = [
-            getattr(self, param_name) for param_name in sorted(self.params.keys())
-        ]
-   
+    
     def update_params(self):
         """
         Update all instance attributes to match the values stored in the 
@@ -142,16 +120,9 @@ class BaseDyn:
         """
         for key in self.params.keys():
             setattr(self, key, self.params[key])
-
-    def transform_params(self, transform_fn: Callable[[str, np.ndarray], np.ndarray]) -> None:
-        """Transforms the current parameter list via a transform function
-        """
-        self.param_list = list(
-            starmap(
-                transform_fn,
-                zip(sorted(self.params.keys()), self.param_list)
-            )
-        )
+    
+    def get_param_names(self):
+        return sorted(self.params.keys())
 
     def _load_data(self):
         """Load data from a JSON file"""
@@ -167,20 +138,10 @@ class BaseDyn:
             return data_default
 
     @staticmethod
-    def _rhs(X, t):
-        """The right-hand side of the dynamical system. Overwritten by the subclass"""
-        return X
-    
-    @staticmethod
-    def _jac(X, t, *args):
-        """The Jacobian of the dynamical system. Overwritten by the subclass"""
-        return None
-
-    @staticmethod
     def bound_trajectory(traj):
         """Bound a trajectory within a periodic domain"""
         return np.mod(traj, 2 * np.pi)
-
+    
     def load_trajectory(
         self,
         subsets="train", 
@@ -208,26 +169,14 @@ class BaseDyn:
         period = 12
         granval = {"coarse": 15, "fine": 100}[granularity]
         dataset_name = subsets.split("_")[0]
-        data_path = f"{dataset_name}_multivariate__pts_per_period_{granval}__periods_{period}.json.gz"
+        data_path = f"{dataset_name}_multivariate__pts_per_period_{granval}__periods_{period}.json"
         if noise:
             name_parts = list(os.path.splitext(data_path))
             data_path = "".join(name_parts[:-1] + ["_noise"] + [name_parts[-1]])
-
-
-        if not _has_data:
-            warnings.warn(
-                        "Data module not found. To use precomputed datasets, "+ \
-                            "please install the external data repository "+ \
-                                "\npip install git+https://github.com/williamgilpin/dysts_data"
-            )
-
-        base_path = get_datapath()
-        data_path = os.path.join(base_path, data_path)
-
-        # cwd = os.path.dirname(os.path.realpath(__file__))
-        # data_path = os.path.join(cwd, "data", data_path)
-
-        with gzip.open(data_path, 'rt', encoding="utf-8") as file:
+            
+        cwd = os.path.dirname(os.path.realpath(__file__))
+        data_path = os.path.join(cwd, "data", data_path)
+        with open(data_path, "r") as file:
             dataset = json.load(file)
             
         tpts, sol = np.array(dataset[self.name]['time']), np.array(dataset[self.name]['values'])
@@ -240,38 +189,28 @@ class BaseDyn:
         else:
             return sol
 
-    def make_trajectory(self, *args, **kwargs):
-        """Make a trajectory for the dynamical system"""
-        raise NotImplementedError
 
-    def sample(self, *args,  **kwargs):
-        """Sample a trajectory for the dynamical system via numerical integration"""
-        return self.make_trajectory(*args, **kwargs)
-        
+from scipy.integrate import solve_ivp
+
+
 class DynSys(BaseDyn):
     """
     A continuous dynamical system base class, which loads and assigns parameter
     values from a file
-
-    Attributes:
-        kwargs (dict): A dictionary of keyword arguments passed to the base dynamical
-            model class
     """
 
-    def __init__(self, **kwargs):
-        self.data_path = DATAPATH_CONTINUOUS
-        super().__init__(**kwargs)
+    def __init__(self):
+        self.data_path = data_path_continuous
+        super().__init__()
         self.dt = self._load_data()["dt"]
         self.period = self._load_data()["period"]
 
     def rhs(self, X, t):
         """The right hand side of a dynamical equation"""
-        out = self._rhs(*X.T, t, *self.param_list)
-        return out
-    
-    def jac(self, X, t):
-        """The Jacobian of the dynamical system"""
-        out = self._jac(*X.T, t, *self.param_list)
+        param_list = [
+            getattr(self, param_name) for param_name in self.get_param_names()
+        ]
+        out = self._rhs(*X.T, t, *param_list)
         return out
 
     def __call__(self, X, t):
@@ -281,23 +220,20 @@ class DynSys(BaseDyn):
     def make_trajectory(
         self,
         n,
+        method="Radau",
         resample=True,
         pts_per_period=100,
         return_times=False,
         standardize=False,
         postprocess=True,
         noise=0.0,
-        timescale="Fourier",
-        method="Radau",
-        rtol=1e-12,
-        atol=1e-12,
-        **kwargs
     ):
         """
         Generate a fixed-length trajectory with default timestep, parameters, and initial conditions
         
         Args:
             n (int): the total number of trajectory points
+            method (str): the integration method
             resample (bool): whether to resample trajectories to have matching dominant 
                 Fourier components
             pts_per_period (int): if resampling, the number of points per period
@@ -308,14 +244,6 @@ class DynSys(BaseDyn):
                 rescalings to the integration coordinates
             noise (float): The amount of stochasticity in the integrated dynamics. This would correspond
                 to Brownian motion in the absence of any forcing.
-            timescale (str): The timescale to use for resampling. "Fourier" (default) uses
-                the dominant significant Fourier timescale, estimated using the periodogram
-                of the system and surrogates. "Lyapunov" uses the Lypunov timescale of 
-                the system.
-            method (str): the integration method
-            rtol (float): relative tolerance for the integration routine
-            atol (float): absolute tolerance for the integration routine
-            **kwargs: Additional keyword arguments passed to the integration routine
         
         Returns:
             sol (ndarray): A T x D trajectory
@@ -323,16 +251,10 @@ class DynSys(BaseDyn):
             
         """
         tpts = np.arange(n) * self.dt
-        np.random.seed(self.random_state)
 
         if resample:
-            if timescale == "Fourier":
-                tlim = (self.period) * (n / pts_per_period)
-            elif timescale == "Lyapunov":
-                tlim = (1 / self.maximum_lyapunov_estimated) * (n / pts_per_period)
-            else:
-                tlim = (self.period) * (n / pts_per_period)
-                
+            #         print((self.period * self.dt))
+            tlim = (self.period) * (n / pts_per_period)
             upscale_factor = (tlim / self.dt) / n
             if upscale_factor > 1e3:
                 warnings.warn(
@@ -341,26 +263,17 @@ class DynSys(BaseDyn):
             tpts = np.linspace(0, tlim, n)
 
         m = len(np.array(self.ic).shape)
-
-        # check for analytical Jacobian, with condition of ic being a ndim array
-        if (self.ic.ndim > 1 and self.jac(self.ic[0],0)) or self.jac(self.ic, 0) is not None:
-            jac = lambda t, x : self.jac(x, t)
-        else:
-            jac = None
-
         if m < 1:
             m = 1
         if m == 1:
             sol = integrate_dyn(
-                self, self.ic, tpts, dtval=self.dt, method=method, noise=noise, jac=jac, rtol=rtol, atol=atol,
-                **kwargs
+                self, self.ic, tpts, dtval=self.dt, method=method, noise=noise
             ).T
         else:
             sol = list()
             for ic in self.ic:
                 traj = integrate_dyn(
-                    self, ic, tpts, dtval=self.dt, method=method, noise=noise, jac=jac, rtol=rtol, atol=atol,
-                    **kwargs
+                    self, ic, tpts, dtval=self.dt, method=method, noise=noise
                 )
                 check_complete = (traj.shape[-1] == len(tpts))
                 if check_complete: 
@@ -387,6 +300,7 @@ class DynSys(BaseDyn):
         else:
             return sol
 
+
 class DynMap(BaseDyn):
     """
     A dynamical system base class, which loads and assigns parameter
@@ -394,25 +308,29 @@ class DynMap(BaseDyn):
     
     Args:
         params (list): parameter values for the differential equations
-        kwargs (dict): A dictionary of keyword arguments passed to the base dynamical
-            model class
     
     Todo: 
         A function to look up additional metadata, if requested
     """
 
-    def __init__(self, **kwargs):
-        self.data_path = DATAPATH_DISCRETE
-        super().__init__(**kwargs)
+    def __init__(self):
+        self.data_path = data_path_discrete
+        super().__init__()
 
     def rhs(self, X):
         """The right hand side of a dynamical map"""
-        out = self._rhs(*X.T, *self.param_list)
+        param_list = [
+            getattr(self, param_name) for param_name in self.get_param_names()
+        ]
+        out = self._rhs(*X.T, *param_list)
         return np.vstack(out).T
 
     def rhs_inv(self, Xp):
         """The inverse of the right hand side of a dynamical map"""
-        out = self._rhs_inv(*Xp.T, *self.param_list)
+        param_list = [
+            getattr(self, param_name) for param_name in self.get_param_names()
+        ]
+        out = self._rhs_inv(*Xp.T, *param_list)
         return np.vstack(out).T
 
     def __call__(self, X):
@@ -469,16 +387,14 @@ class DynMap(BaseDyn):
         else:
             return sol
 
+
+
 class DynSysDelay(DynSys):
     """
     A delayed differential equation object. Defaults to using Euler integration scheme
     The delay timescale is assumed to be the "tau" field. The embedding dimension is set 
     by default to ten, but delay equations are infinite dimensional.
     Uses a double-ended queue for memory efficiency
-
-    Attributes:
-        kwargs (dict): A dictionary of keyword arguments passed to the dynamical
-            system parent class
     
     Todo:
         Treat previous delay values as a part of the dynamical variable in rhs
@@ -487,15 +403,18 @@ class DynSysDelay(DynSys):
         are supported
     """
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self):
+        super().__init__()
         # self.history = collections.deque(1.3 * np.random.rand(1 + mem_stride))
         self.__call__ = self.rhs
 
     def rhs(self, X, t):
         """The right hand side of a dynamical equation"""
         X, Xprev = X[0], X[1]
-        out = self._rhs(X, Xprev, t, *self.param_list)
+        param_list = [
+            getattr(self, param_name) for param_name in self.get_param_names()
+        ]
+        out = self._rhs(X, Xprev, t, *param_list)
         return out
 
     def make_trajectory(
@@ -507,13 +426,12 @@ class DynSysDelay(DynSys):
         resample=False,
         pts_per_period=100,
         standardize=False,
-        timescale="Fourier",
         return_times=False,
         postprocess=True,
     ):
         """
-        Generate a fixed-length trajectory with default timestep, parameters, and 
-        initial conditions.
+        Generate a fixed-length trajectory with default timestep,
+        parameters, and initial conditions
         
         Args:
             n (int): the total number of trajectory points
@@ -524,14 +442,8 @@ class DynSysDelay(DynSys):
                 Fourier components
             pts_per_period (int): if resampling, the number of points per period
             standardize (bool): Standardize the output time series.
-            timescale (str): The timescale to use for resampling. "Fourier" (default) uses
-                the dominant significant Fourier timescale, estimated using the periodogram
-                of the system and surrogates. "Lyapunov" uses the Lypunov timescale of 
-                the system.
             return_times (bool): Whether to return the timepoints at which the solution 
                 was computed
-            postprocess (bool): Whether to apply coordinate conversions and other domain-specific
-                rescalings to the integration coordinates
             
         Todo:
             Support for multivariate and multidelay equations with multiple deques
@@ -541,70 +453,54 @@ class DynSysDelay(DynSys):
         np.random.seed(self.random_state)
         n0 = n
 
-        ## history length proportional to the delay time over the timestep
-        mem_stride = int(np.ceil(self.tau / self.dt))
-        
-        ## If resampling is performed, calculate the true number of timesteps for the
-        ## Euler loop
+        mem_stride = int(np.ceil(self.tau / self.dt))  # stride
+        #         clipping = mem_stride
+        #         n += 2 * clipping
+
         if resample:
-            num_periods = n / pts_per_period
-            if timescale == "Fourier":
-                num_timesteps_per_period = self.period / self.dt
-            elif timescale == "Lyapunov":
-                num_timesteps_per_period = (1 / self.maximum_lyapunov_estimated) / self.dt
-            else:
-                num_timesteps_per_period = self.period / self.dt
-            nt = int(np.ceil(num_timesteps_per_period *  num_periods))
+            nt = int(np.ceil((self.period / self.dt) * (n / pts_per_period)))
         else:
             nt = n
 
         # remove transient at front and back
         clipping = int(np.ceil(mem_stride / (nt / n)))
-
-        ## Augment the number of timesteps to account for the transient and the embedding
-        ## dimension
         n += (d + 1) * clipping
         nt += (d + 1) * mem_stride
 
-        ## If passed initial conditions are sufficient, then use them. Otherwise, 
-        ## pad with with random initial conditions
-        values = self.ic[0] * (1 + 0.2 * np.random.rand(1 + mem_stride))
-        values[-len(self.ic[-mem_stride:]):] = self.ic[-mem_stride:]
-        history = collections.deque(values)
+        if len(self.ic) >= mem_stride:
+            history = collections.deque(self.ic[-mem_stride:])
+        else:
+            history = collections.deque(
+                self.ic[-1] * (1 + 0.2 * np.random.rand(1 + mem_stride))
+            )
 
-        ## pre-allocate full solution
         tpts = np.arange(nt) * self.dt
+        tlim = tpts[-1]
+        save_inds = np.linspace(0, nt, n).astype(int)
+
+        # pre-allocate solution
         sol = np.zeros(n)
         sol[0] = self.ic[-1]
         x_next = sol[0]
 
-        ## Define solution submesh for resampling
-        save_inds = np.linspace(0, nt, n).astype(int)
-        save_tpts = list()
-
         ## Pre-compute noise
-        noise_vals = noise * np.random.normal(size=nt, loc=0.0, scale=np.sqrt(self.dt))
-
-        ## Run Euler integration loop
+        noise_vals = np.random.normal(size=nt, loc=0.0, scale=np.sqrt(self.dt))
         for i, t in enumerate(tpts):
             if i == 0:
                 continue
+            dt = tpts[i] - tpts[i - 1]
 
             x_next = (
                 x_next
-                + self.rhs([x_next, history.popleft()], t) * self.dt
-                + noise_vals[i]
+                + self.rhs([x_next, history.pop()], t) * self.dt
+                + noise * noise_vals[i]
             )
 
             if i in save_inds:
                 sol[save_inds == i] = x_next
-                save_tpts.append(t)
-            history.append(x_next)
+            history.appendleft(x_next)
 
-        save_tpts = np.array(save_tpts)
-        save_dt = np.median(np.diff(save_tpts))
-
-        ## now stack strided solution to create an embedding
+        ## now stack to create an embedding
         sol_embed = list()
         embed_stride = int((n / nt) * mem_stride)
         for i in range(d):
@@ -624,9 +520,10 @@ class DynSysDelay(DynSys):
             sol0 = standardize_ts(sol0)
 
         if return_times:
-            return np.arange(sol0.shape[0]) * save_dt, sol0
+            return tpts[clipping : (n0 + clipping)], sol0
         else:
             return sol0
+
 
 def get_attractor_list(model_type="continuous"):
     """
@@ -639,31 +536,16 @@ def get_attractor_list(model_type="continuous"):
         attractor_list (list of str): The names of all attractors in database
     """
     if model_type == "continuous":
-        data_path = DATAPATH_CONTINUOUS
+        data_path = data_path_continuous
     else:
-        data_path = DATAPATH_DISCRETE
+        data_path = data_path_discrete
     with open(data_path, "r") as file:
         data = json.load(file)
     attractor_list = sorted(list(data.keys()))
     return attractor_list
 
-import dysts.flows as dfl
-def _compute_trajectory(equation_name, n, kwargs, init_cond=None, param_transform_fn=None):
-    """A helper function for multiprocessing"""
-    eq = getattr(dfl, equation_name)()
 
-    if init_cond is not None:
-        eq.ic = init_cond
-
-    if param_transform_fn is not None:
-        eq.transform_params(param_transform_fn)
-
-    traj = eq.make_trajectory(n, **kwargs)
-    return traj
-
-def make_trajectory_ensemble(
-    n, subset=None, use_multiprocessing=False, init_conds={}, param_transform=None, use_tqdm=False, **kwargs
-):
+def make_trajectory_ensemble(n, subset=None, use_multiprocessing=False, **kwargs):
     """
     Integrate multiple dynamical systems with identical settings
     
@@ -671,9 +553,6 @@ def make_trajectory_ensemble(
         n (int): The number of timepoints to integrate
         subset (list): A list of system names. Defaults to all systems
         use_multiprocessing (bool): Not yet implemented.
-        init_cond (dict): Optional user input initial conditions mapping string system name to array
-        param_transform (callable): function that transforms individual system parameters
-        use_tqdm (bool): Whether to use a progress bar
         kwargs (dict): Integration options passed to each system's make_trajectory() method
     
     Returns:
@@ -683,57 +562,18 @@ def make_trajectory_ensemble(
     if not subset:
         subset = get_attractor_list()
 
-    if len(init_conds) > 0:
-        assert all(sys in init_conds.keys() for sys in subset), (
-            "given initial conditions must at least contain the subset"
+    if use_multiprocessing:
+        warnings.warn(
+            "Multiprocessing not implemented; this will be included in a future version."
         )
-
-    if use_tqdm and not use_multiprocessing:
-        from tqdm import tqdm
-        subset = tqdm(subset)
-
-    if use_multiprocessing and not _has_multiprocessing:
-        warnings.warn("Multiprocessing is not available on this system. Falling back to single-threaded mode.")
+    
+    # We run this inside the function scope to avoid a circular import issue
+    flows = importlib.import_module("dysts.flows", package=".flows")
     
     all_sols = dict()
-    if use_multiprocessing and _has_multiprocessing:
-        with Pool() as pool:
-            results = pool.starmap(
-                partial(_compute_trajectory, param_transform_fn=param_transform),
-                [
-                    (equation_name, n, kwargs, init_conds.get(equation_name))
-                    for equation_name in subset
-                ]
-            )
-        all_sols = dict(zip(subset, results))
-
-    else:
-        for equation_name in subset:
-            sol = _compute_trajectory(equation_name, n, kwargs, init_conds.get(equation_name), param_transform)
-            all_sols[equation_name] = sol
+    for equation_name in subset:
+        eq = getattr(flows, equation_name)()
+        sol = eq.make_trajectory(n, **kwargs)
+        all_sols[equation_name] = sol
 
     return all_sols
-
-def init_cond_sampler(random_seed: Optional[int] = 0, subset: Optional[Iterable] = None) -> Callable:
-    """Sample zero mean guassian perturbations for each initial condition in a given system list
-
-    Args:
-        random_seed: for random sampling
-        subset: A list of system names. Defaults to all systems
-
-    Returns:
-        a function which samples a random perturbation of the init conditions
-    """
-    if not subset:
-        subset = get_attractor_list()
-
-    rng = np.random.default_rng(random_seed)
-    ic_dict = {sys: np.array(getattr(dfl, sys)().ic) for sys in subset}
-
-    def _sampler(scale: Optional[float] = 1e-4) -> Dict[str, npt.NDArray[np.float64]]:
-        return {
-            sys: ic + rng.normal(scale=scale*np.linalg.norm(ic), size=ic.shape)
-            for sys, ic in ic_dict.items()
-        }
-
-    return _sampler

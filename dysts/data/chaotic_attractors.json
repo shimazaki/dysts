@@ -5,7 +5,7 @@
         "correlation_dimension": 1.8926529653780282,
         "delay": false,
         "description": "A torus-like attractor related to the forced Lorenz system.",
-        "dt": 0.0005168261376896056,
+        "dt": 0.0009043,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -19,7 +19,7 @@
             0.020305496211675024,
             -0.3090729926541944
         ],
-        "maximum_lyapunov_estimated": 0.13489555530106362,
+        "maximum_lyapunov_estimated": 0.08947878317195473,
         "multiscale_entropy": 0.514512246123007,
         "nonautonomous": false,
         "parameters": {
@@ -40,7 +40,7 @@
         "correlation_dimension": 1.934087922565906,
         "delay": false,
         "description": "Stochastic resonance in forced oscillators.",
-        "dt": 0.001363027171195199,
+        "dt": 0.0007768,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -54,7 +54,7 @@
             0.0008785544495802295,
             -0.44025308728606666
         ],
-        "maximum_lyapunov_estimated": 0.10107726791527546,
+        "maximum_lyapunov_estimated": 0.03977755489021002,
         "multiscale_entropy": 0.7612343892027325,
         "nonautonomous": false,
         "parameters": {
@@ -71,7 +71,7 @@
         "correlation_dimension": 1.9333366595280337,
         "delay": false,
         "description": "A modified Lotka-Volterra ecosystem, also known as the ACT attractor.",
-        "dt": 0.000632925487581133,
+        "dt": 0.001215,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -85,7 +85,7 @@
             -0.0006168721448237418,
             -1.2169777901647385
         ],
-        "maximum_lyapunov_estimated": 0.23737468667051287,
+        "maximum_lyapunov_estimated": 0.24285661379003065,
         "multiscale_entropy": 0.7388404221540498,
         "nonautonomous": false,
         "parameters": {
@@ -104,7 +104,7 @@
         "correlation_dimension": 1.9304327374472745,
         "delay": false,
         "description": "An exact solution of Euler's equation for inviscid flow in 3D. Often referred to as the ABC flow.",
-        "dt": 0.0005702550425070285,
+        "dt": 0.007127,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -118,7 +118,7 @@
             -0.01824039630029517,
             -2.378562986862767
         ],
-        "maximum_lyapunov_estimated": 0.3667300080060703,
+        "maximum_lyapunov_estimated": 1.47222087191395,
         "multiscale_entropy": 1.2759526834024162,
         "nonautonomous": false,
         "parameters": {
@@ -140,7 +140,7 @@
         "correlation_dimension": 2.271925873318733,
         "delay": false,
         "description": "A quasi-integrable system that transitions to Chirikov diffusive dynamics when perturbed.",
-        "dt": 0.013452242040339115,
+        "dt": 0.003497,
         "embedding_dimension": 5,
         "hamiltonian": true,
         "initial_conditions": [
@@ -158,7 +158,7 @@
             -0.00233619507966634,
             -0.0039196281630406
         ],
-        "maximum_lyapunov_estimated": 0.06514413995171335,
+        "maximum_lyapunov_estimated": 0.06266308160064184,
         "multiscale_entropy": 0.620621428966386,
         "nonautonomous": true,
         "parameters": {
@@ -179,17 +179,17 @@
         "correlation_dimension": 1.0906156314277713,
         "delay": false,
         "description": "A model of regime transition in atmospheric flows. Contains widely-separated timescales due a quadratic term, which itself arises from a conservation law.",
-        "dt": 0.01792198051014566,
+        "dt": 0.01773980357826076,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
-            0.026544189906947246,
-            0.20580772677536016,
+            0.026544189906947246, 
+            0.20580772677536016, 
             0.43758119702219506
         ],
         "kaplan_yorke_dimension": 2.1859596374283137,
         "lyapunov_spectrum_estimated": null,
-        "maximum_lyapunov_estimated": 0.010543274932274862,
+        "maximum_lyapunov_estimated": 0.29807113997986867,
         "multiscale_entropy": 0.4278776303819699,
         "nonautonomous": false,
         "parameters": {
@@ -210,7 +210,7 @@
         "correlation_dimension": 1.4274264497038096,
         "delay": false,
         "description": "A two-neuron minimal model nervous system.",
-        "dt": 0.03632205367561255,
+        "dt": 0.007263,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -224,7 +224,7 @@
             -0.00011803510272572572,
             -0.5318869010933206
         ],
-        "maximum_lyapunov_estimated": 0.038767800131815223,
+        "maximum_lyapunov_estimated": 0.01627457119251563,
         "multiscale_entropy": 0.5244807630539362,
         "nonautonomous": false,
         "parameters": {
@@ -266,7 +266,7 @@
         "correlation_dimension": 0.8599643745060099,
         "delay": false,
         "description": "A reduced-order model of the BZ reaction that exhibits period doubling. The bifurcation parameter for controlling the onset of chaos is kf. The system undergoes regular cycling when kf=3e-4, and chaotic oscillations when kf=3.5e-4",
-        "dt": 3.6520086681113285e-06,
+        "dt": 3.834e-07,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -280,7 +280,7 @@
             -0.4669861532822692,
             -5529.048679334775
         ],
-        "maximum_lyapunov_estimated": 132.08766434104578,
+        "maximum_lyapunov_estimated": 114.64513768787073,
         "multiscale_entropy": 0.8764191281600929,
         "nonautonomous": false,
         "parameters": {
@@ -316,7 +316,7 @@
         "correlation_dimension": 2.0025138386006334,
         "delay": false,
         "description": "A zonal jet passing between two counter rotating vortices. A steady Hamiltonian with a time-dependent perturbation.",
-        "dt": 17.56824204034172,
+        "dt": 100.0,
         "embedding_dimension": 3,
         "hamiltonian": true,
         "initial_conditions": [
@@ -330,7 +330,7 @@
             2.5409880958463764e-09,
             -9.631983584415862e-08
         ],
-        "maximum_lyapunov_estimated": 3.0318672544949706e-06,
+        "maximum_lyapunov_estimated": 1.965179437740836e-07,
         "multiscale_entropy": 0.733566708397195,
         "nonautonomous": false,
         "parameters": {
@@ -366,7 +366,7 @@
         "correlation_dimension": 1.6871652299106432,
         "delay": false,
         "description": " A chaotic food web composed of interacting predators,, consumers, and vegetation.",
-        "dt": 0.0013209801633604456,
+        "dt": 0.0014,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -380,7 +380,7 @@
             0.001803137034352918,
             -2.9362739640325555
         ],
-        "maximum_lyapunov_estimated": 0.12597339364128174,
+        "maximum_lyapunov_estimated": 0.047127554009157836,
         "multiscale_entropy": 0.5917316835585642,
         "nonautonomous": false,
         "parameters": {
@@ -403,7 +403,7 @@
         "correlation_dimension": 2.0693373122119807,
         "delay": false,
         "description": "The location of the mixer is chosen so that there is a stagnation point at its symmetric complement. Solution is given in polar coordinates (r, theta).",
-        "dt": 0.0005905109184863022,
+        "dt": 0.0002834,
         "embedding_dimension": 3,
         "hamiltonian": true,
         "initial_conditions": [
@@ -417,7 +417,7 @@
             0.007963961496808246,
             -6.16801583110239
         ],
-        "maximum_lyapunov_estimated": 2.120338159738003,
+        "maximum_lyapunov_estimated": 5.609358269449125,
         "multiscale_entropy": 1.2895030395332947,
         "nonautonomous": true,
         "parameters": {
@@ -441,7 +441,7 @@
         "correlation_dimension": 2.212155663068541,
         "delay": false,
         "description": "A classic minimal chaotic mixing flow. Solution is given in polar coordinates (r, theta)",
-        "dt": 0.0005524254042340715,
+        "dt": 0.0001541,
         "embedding_dimension": 3,
         "hamiltonian": true,
         "initial_conditions": [
@@ -455,7 +455,7 @@
             -0.0016245138226140734,
             -5.476774413564737
         ],
-        "maximum_lyapunov_estimated": 2.863016777441748,
+        "maximum_lyapunov_estimated": 4.877365151111009,
         "multiscale_entropy": 1.1011364489263011,
         "nonautonomous": true,
         "parameters": {
@@ -479,7 +479,7 @@
         "correlation_dimension": 1.7283783962483246,
         "delay": false,
         "description": "Economic cycles with fluctuating demand. Related to the DequanLi attractor",
-        "dt": 0.0006083213868978987,
+        "dt": 0.000444,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -493,7 +493,7 @@
             0.0006869653413631164,
             -0.22171821407820913
         ],
-        "maximum_lyapunov_estimated": 0.06012563518102038,
+        "maximum_lyapunov_estimated": 0.04911273564448129,
         "multiscale_entropy": 0.7505556173926505,
         "nonautonomous": false,
         "parameters": {
@@ -515,7 +515,7 @@
         "correlation_dimension": 1.925056080468132,
         "delay": false,
         "description": "A modified economic cycle model.",
-        "dt": 0.0005356692782129358,
+        "dt": 0.0004124,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -529,7 +529,7 @@
             0.0033455417942589724,
             -0.009602768742817189
         ],
-        "maximum_lyapunov_estimated": 0.07681730213975516,
+        "maximum_lyapunov_estimated": 0.02038922500462878,
         "multiscale_entropy": 0.4520009826326611,
         "nonautonomous": false,
         "parameters": {
@@ -551,7 +551,7 @@
         "correlation_dimension": 2.0538157998881426,
         "delay": false,
         "description": "A scroll-like attractor with unique symmetry along the z axis.",
-        "dt": 0.00015669211535254134,
+        "dt": 0.0001175,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -565,7 +565,7 @@
             0.027056468824027846,
             -11.225316054517004
         ],
-        "maximum_lyapunov_estimated": 2.324596351534631,
+        "maximum_lyapunov_estimated": 2.3453555864112117,
         "multiscale_entropy": 0.906432166797223,
         "nonautonomous": false,
         "parameters": {
@@ -582,7 +582,7 @@
         "correlation_dimension": 1.2267327876216785,
         "delay": false,
         "description": "Intracellular calcium ion oscillations.",
-        "dt": 0.000268644774129001,
+        "dt": 0.0001531,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -596,7 +596,7 @@
             0.022652249040266133,
             -9.284523260554844
         ],
-        "maximum_lyapunov_estimated": 0.5802865327706731,
+        "maximum_lyapunov_estimated": 0.5788123099350391,
         "multiscale_entropy": 0.5770296569860646,
         "nonautonomous": false,
         "parameters": {
@@ -630,7 +630,7 @@
         "correlation_dimension": 1.8508709631136986,
         "delay": false,
         "description": "Intracellular calcium ion oscillations with quasiperiodic parameter values. The original paper also includes parameters for a limit cycle",
-        "dt": 0.00013124987497917573,
+        "dt": 7.48e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -644,7 +644,7 @@
             -0.02225809783295617,
             -0.054895455267669285
         ],
-        "maximum_lyapunov_estimated": 0.48083152954373326,
+        "maximum_lyapunov_estimated": 0.1620868046117494,
         "multiscale_entropy": 0.8512706770213926,
         "nonautonomous": false,
         "parameters": {
@@ -678,7 +678,7 @@
         "correlation_dimension": 1.7558665560565607,
         "delay": false,
         "description": "A simplified model of the cell cycle. The parameter `Kim` controls the bifurcations.",
-        "dt": 0.04094882480413617,
+        "dt": 0.04217,
         "embedding_dimension": 6,
         "hamiltonian": false,
         "initial_conditions": [
@@ -698,7 +698,7 @@
             -2.850536314608979,
             -6.767614340964144
         ],
-        "maximum_lyapunov_estimated": 0.010172128409635746,
+        "maximum_lyapunov_estimated": 0.004699854181221581,
         "multiscale_entropy": 1.021736994304444,
         "nonautonomous": false,
         "parameters": {
@@ -724,7 +724,7 @@
         "correlation_dimension": 1.7777777253372764,
         "delay": false,
         "description": "Cellular neural network dynamics.",
-        "dt": 0.0006401066844473746,
+        "dt": 0.0007232,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -738,7 +738,7 @@
             0.0036354952626342415,
             -0.6061495728157424
         ],
-        "maximum_lyapunov_estimated": 2.3258468977096562,
+        "maximum_lyapunov_estimated": 0.09799656528996928,
         "multiscale_entropy": 1.2414841874061011,
         "nonautonomous": false,
         "parameters": {
@@ -757,7 +757,7 @@
         "correlation_dimension": 2.080398064710209,
         "delay": false,
         "description": "A system based on feedback anti-control in engineering.",
-        "dt": 0.00011739756626106157,
+        "dt": 0.0001209,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -771,7 +771,7 @@
             -0.05031354288886987,
             -11.841816202859391
         ],
-        "maximum_lyapunov_estimated": 2.005961349488129,
+        "maximum_lyapunov_estimated": 2.0471208808332557,
         "multiscale_entropy": 0.7604529380690989,
         "nonautonomous": false,
         "parameters": {
@@ -789,7 +789,7 @@
         "correlation_dimension": 1.2279387897055603,
         "delay": false,
         "description": "A rigid body with feedback anti-control.",
-        "dt": 0.0005609534922487569,
+        "dt": 0.0001963,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -803,7 +803,7 @@
             0.00018225769802326938,
             -5.485329903201408
         ],
-        "maximum_lyapunov_estimated": 0.16363115430160305,
+        "maximum_lyapunov_estimated": 0.16460631102343387,
         "multiscale_entropy": 0.6224325755254609,
         "nonautonomous": false,
         "parameters": {
@@ -821,7 +821,7 @@
         "correlation_dimension": 1.7987707234207353,
         "delay": false,
         "description": "An electronic circuit with a diode providing negative resistance.",
-        "dt": 0.0002847474579095888,
+        "dt": 0.006605,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -835,7 +835,7 @@
             0.0022048281168492866,
             -4.319076735248446
         ],
-        "maximum_lyapunov_estimated": 1.2301163591725595,
+        "maximum_lyapunov_estimated": 0.4605474829443073,
         "multiscale_entropy": 1.2693527097629784,
         "nonautonomous": false,
         "parameters": {
@@ -854,7 +854,7 @@
         "correlation_dimension": 1.6328881174569194,
         "delay": false,
         "description": "The Drosophila circadian rhythm under periodic light/dark forcing.",
-        "dt": 0.005400900150025336,
+        "dt": 0.001728,
         "embedding_dimension": 5,
         "hamiltonian": false,
         "initial_conditions": [
@@ -872,7 +872,7 @@
             -0.3598453092044599,
             -1.091393481159416
         ],
-        "maximum_lyapunov_estimated": 0.006263277393890506,
+        "maximum_lyapunov_estimated": 0.09298369588063138,
         "multiscale_entropy": 0.7054585345031309,
         "nonautonomous": true,
         "parameters": {
@@ -904,7 +904,7 @@
         "correlation_dimension": 1.453444520919468,
         "delay": false,
         "description": "A system of predator-prey equations with co-evolving prey.",
-        "dt": 0.02455809301550289,
+        "dt": 0.008103,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -918,7 +918,7 @@
             0.0017391810332012293,
             -1.9676998121970224
         ],
-        "maximum_lyapunov_estimated": 0.00732698039035783,
+        "maximum_lyapunov_estimated": 0.003487942886059227,
         "multiscale_entropy": 1.006450625395487,
         "nonautonomous": false,
         "parameters": {
@@ -945,7 +945,7 @@
         "correlation_dimension": 1.7352885770533426,
         "delay": false,
         "description": "An electrical circuit used as a signal generator.",
-        "dt": 0.0008536622770461122,
+        "dt": 0.0004609,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -959,7 +959,7 @@
             -0.0021021241106901328,
             -1.0014048629576902
         ],
-        "maximum_lyapunov_estimated": 0.3736008151161584,
+        "maximum_lyapunov_estimated": 0.1375028529066911,
         "multiscale_entropy": 0.7266290517682168,
         "nonautonomous": false,
         "parameters": {
@@ -979,7 +979,7 @@
         "correlation_dimension": 2.0922372256742787,
         "delay": false,
         "description": "A variant of the Arneodo attractor",
-        "dt": 0.0011534522420402027,
+        "dt": 0.002295,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -993,7 +993,7 @@
             -6.504894715051528e-05,
             -0.5873658566804084
         ],
-        "maximum_lyapunov_estimated": 0.13718762024831516,
+        "maximum_lyapunov_estimated": 0.14890693833273877,
         "multiscale_entropy": 0.9055084400125268,
         "nonautonomous": false,
         "parameters": {
@@ -1012,7 +1012,7 @@
         "correlation_dimension": 1.605056083622306,
         "delay": false,
         "description": "An electronic circuit capable of producing multiple attractors under bifurcations.",
-        "dt": 0.0006578296382730287,
+        "dt": 0.0001447,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1026,7 +1026,7 @@
             0.0064562720284210215,
             -11.157725546142514
         ],
-        "maximum_lyapunov_estimated": 0.40591521049520063,
+        "maximum_lyapunov_estimated": 0.47344233096408,
         "multiscale_entropy": 0.8537980405426894,
         "nonautonomous": false,
         "parameters": {
@@ -1046,7 +1046,7 @@
         "correlation_dimension": 1.9326161168463631,
         "delay": false,
         "description": "Related to the Three Scroll unified attractor TSUCS-2",
-        "dt": 1.6763993998996084e-05,
+        "dt": 2.598e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1060,7 +1060,7 @@
             0.09866428540326228,
             -2.867185439620747
         ],
-        "maximum_lyapunov_estimated": 0.739747976641268,
+        "maximum_lyapunov_estimated": 1.8601963396884453,
         "multiscale_entropy": 0.8319369667525882,
         "nonautonomous": false,
         "parameters": {
@@ -1081,7 +1081,7 @@
         "correlation_dimension": 2.3304138196892192,
         "delay": false,
         "description": "A time-dependent fluid flow exhibiting Lagrangian coherent structures",
-        "dt": 0.002791065177530072,
+        "dt": 0.002944,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1095,7 +1095,7 @@
             -0.0036702088073069326,
             -0.06633987533400756
         ],
-        "maximum_lyapunov_estimated": 0.12185254082886439,
+        "maximum_lyapunov_estimated": 0.06285936079346421,
         "multiscale_entropy": 0.66519273658672,
         "nonautonomous": true,
         "parameters": {
@@ -1115,7 +1115,7 @@
         "correlation_dimension": 2.6609798545500714,
         "delay": false,
         "description": "Two coupled rigid pendula without damping.",
-        "dt": 0.0008048141356891847,
+        "dt": 0.0007725,
         "embedding_dimension": 4,
         "hamiltonian": true,
         "initial_conditions": [
@@ -1131,7 +1131,7 @@
             -0.17345525567611142,
             -10.805817517613212
         ],
-        "maximum_lyapunov_estimated": 3.985298067514186,
+        "maximum_lyapunov_estimated": 8.464443924343541,
         "multiscale_entropy": 0.5591104791210428,
         "nonautonomous": false,
         "parameters": {
@@ -1151,7 +1151,7 @@
         "correlation_dimension": 2.019134182605584,
         "delay": false,
         "description": "A monochromatically-forced rigid pendulum, with the nonlinearity approximated as cubic.",
-        "dt": 0.0014901683613936711,
+        "dt": 0.001773,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1165,7 +1165,7 @@
             0.0003077550037828977,
             -0.17595301607629793
         ],
-        "maximum_lyapunov_estimated": 0.14026545752865122,
+        "maximum_lyapunov_estimated": 0.09952054532941003,
         "multiscale_entropy": 0.8686568999981737,
         "nonautonomous": true,
         "parameters": {
@@ -1187,7 +1187,7 @@
         "correlation_dimension": 0.19124944684169679,
         "delay": false,
         "description": "A reduced-order variant of the Hodgkin-Huxley model. The parameter gkc controls the onset of chaos.",
-        "dt": 0.00011057842973826836,
+        "dt": 4.4224e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1201,7 +1201,7 @@
             -0.3267053778962445,
             -129.70230355691595
         ],
-        "maximum_lyapunov_estimated": 0.7164303367057223,
+        "maximum_lyapunov_estimated": 17.030315084501463,
         "multiscale_entropy": 0.7807524009298388,
         "nonautonomous": false,
         "parameters": {
@@ -1228,7 +1228,7 @@
         "correlation_dimension": 1.922279579804101,
         "delay": false,
         "description": "Stock fluctuations under varying investment demand and interest rates",
-        "dt": 0.001978969828304571,
+        "dt": 0.0008706,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1242,7 +1242,7 @@
             0.0009835797228343356,
             -0.6279525877233353
         ],
-        "maximum_lyapunov_estimated": 0.09354106442670211,
+        "maximum_lyapunov_estimated": 0.10708598383274774,
         "multiscale_entropy": 0.7817861077722251,
         "nonautonomous": false,
         "parameters": {
@@ -1260,7 +1260,7 @@
         "correlation_dimension": 2.18441887672186,
         "delay": false,
         "description": "A droplet bouncing on a horizontal soap film.",
-        "dt": 0.0015472778796464582,
+        "dt": 0.002073,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1274,7 +1274,7 @@
             -0.0011783910877478326,
             -0.09403052188090477
         ],
-        "maximum_lyapunov_estimated": 0.22311237411461174,
+        "maximum_lyapunov_estimated": 0.08081301489037328,
         "multiscale_entropy": 0.796312585554829,
         "nonautonomous": true,
         "parameters": {
@@ -1294,7 +1294,7 @@
         "correlation_dimension": 1.616157126800283,
         "delay": false,
         "description": "An autocatalytic chemical system.",
-        "dt": 0.004082880480079893,
+        "dt": 0.001939,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1308,7 +1308,7 @@
             -0.014898681909916936,
             -0.23304448314240073
         ],
-        "maximum_lyapunov_estimated": 0.015326007974604663,
+        "maximum_lyapunov_estimated": 0.0028307087627546254,
         "multiscale_entropy": 0.47299463051887286,
         "nonautonomous": true,
         "parameters": {
@@ -1329,7 +1329,7 @@
         "correlation_dimension": 1.6159744662497548,
         "delay": false,
         "description": "A driven neuron model sustaining both quiesent and oscillating states.",
-        "dt": 0.008425874900717644,
+        "dt": 0.002005,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1343,7 +1343,7 @@
             -0.0017541532237019502,
             -0.9544351506941636
         ],
-        "maximum_lyapunov_estimated": 0.007561278655908403,
+        "maximum_lyapunov_estimated": 0.0006271045837994498,
         "multiscale_entropy": 0.946734422406113,
         "nonautonomous": true,
         "parameters": {
@@ -1366,7 +1366,7 @@
         "correlation_dimension": 1.3243672479645296,
         "delay": false,
         "description": "An electronic circuit containing a triode.",
-        "dt": 0.0028958576429408823,
+        "dt": 0.0003544,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1380,7 +1380,7 @@
             -0.0008450617218488057,
             -20.60632249066986
         ],
-        "maximum_lyapunov_estimated": 0.0035097622587646343,
+        "maximum_lyapunov_estimated": 0.26518243888151155,
         "multiscale_entropy": 0.39443058905146283,
         "nonautonomous": true,
         "parameters": {
@@ -1400,7 +1400,7 @@
         "correlation_dimension": 1.9474141853715994,
         "delay": false,
         "description": "A nonlinear control system with feedback.",
-        "dt": 0.0011888181363559625,
+        "dt": 0.002508,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1414,7 +1414,7 @@
             0.00038146676582121423,
             -0.5282231255530121
         ],
-        "maximum_lyapunov_estimated": 0.10509061137519304,
+        "maximum_lyapunov_estimated": 0.09974381765927796,
         "multiscale_entropy": 0.7003576241153363,
         "nonautonomous": false,
         "parameters": {
@@ -1426,51 +1426,13 @@
         "pesin_entropy": 0.10027488648885732,
         "unbounded_indices": []
     },
-    "GlycolyticOscillation": {
-        "bifurcation_parameter": "k",
-        "citation": "Decroly, O.; Goldbeter, An amplified sensitivity arising from covalent modification in biological systems. A. Proc. Natl. Acad. Sci. USA 1982, 79,6917–6921.",
-        "correlation_dimension": 1.6403587221370042,
-        "delay": false,
-        "description": "A model of feedback in glycolytic reactions. Based on the Monod–Wyman–Changeux model.",
-        "dt": 0.010091998840098313,
-        "embedding_dimension": 3,
-        "hamiltonian": false,
-        "initial_conditions": [
-            29.453349256846987, 
-            130.19350141357407, 
-            0.18407087674169492
-        ],
-        "kaplan_yorke_dimension": 1.5520229717346938,
-        "lyapunov_spectrum_estimated": [
-            0.01959615,
-            -0.03550638, 
-            -2.39422048
-        ],
-        "maximum_lyapunov_estimated": 0.021594561241816756,
-        "multiscale_entropy": 0.4632600047939084,
-        "nonautonomous": false,
-        "parameters": {
-            "d": 0.0,
-            "k": 4.422,
-            "l1" : 5e8,
-            "l2" : 100,
-            "nu": 1.0,
-            "q1": 50,
-            "q2": 0.02,
-            "s1": 22.2222,
-            "s2": 22.2222
-        },
-        "period": 50.45999420049144,
-        "pesin_entropy": 0.019596154307804443,
-        "unbounded_indices": []
-    },
     "GuckenheimerHolmes": {
         "bifurcation_parameter": null,
         "citation": "Guckenheimer, John, and Philip Holmes (1983).  Nonlinear oscillations, dynamical systems, and bifurcations of vector fields. Vol. 42. Springer Science & Business Media.",
         "correlation_dimension": 2.072148151317943,
         "delay": false,
         "description": "A nonlinear oscillator.",
-        "dt": 6.154871965840413e-05,
+        "dt": 0.012763,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1484,7 +1446,7 @@
             -0.0032191807339425173,
             -0.9216135618098852
         ],
-        "maximum_lyapunov_estimated": 0.7885729042404602,
+        "maximum_lyapunov_estimated": 0.34082003567895874,
         "multiscale_entropy": 0.5385101182847213,
         "nonautonomous": false,
         "parameters": {
@@ -1505,7 +1467,7 @@
         "correlation_dimension": 2.029661693798021,
         "delay": false,
         "description": "An atmospheric convective cell.",
-        "dt": 0.00029086847807974437,
+        "dt": 0.0007125,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1519,7 +1481,7 @@
             -0.0010838827053467116,
             -0.42739317979015523
         ],
-        "maximum_lyapunov_estimated": 0.2386587703845738,
+        "maximum_lyapunov_estimated": 0.31166133927315953,
         "multiscale_entropy": 0.9351389987191853,
         "nonautonomous": false,
         "parameters": {
@@ -1538,7 +1500,7 @@
         "correlation_dimension": 1.8842400748281847,
         "delay": false,
         "description": "An algebraically-simple chaotic system with quadratic nonlinearity",
-        "dt": 0.000297829638273015,
+        "dt": 0.0002144,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1552,7 +1514,7 @@
             -0.031953945256851884,
             -4.6876300977027565
         ],
-        "maximum_lyapunov_estimated": 0.6963711539102683,
+        "maximum_lyapunov_estimated": 0.586197150399321,
         "multiscale_entropy": 0.7527831765757674,
         "nonautonomous": false,
         "parameters": {
@@ -1569,7 +1531,7 @@
         "correlation_dimension": 1.0147969186008294,
         "delay": false,
         "description": "A three species food web.",
-        "dt": 0.02704250708451582,
+        "dt": 0.006489,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1583,7 +1545,7 @@
             0.005765040490702786,
             -0.5169232002224432
         ],
-        "maximum_lyapunov_estimated": 0.012532796124563227,
+        "maximum_lyapunov_estimated": 0.008585012825774561,
         "multiscale_entropy": 0.47829796264231095,
         "nonautonomous": false,
         "parameters": {
@@ -1604,7 +1566,7 @@
         "correlation_dimension": 1.483374075624846,
         "delay": false,
         "description": "A star's motion around the galactic center.",
-        "dt": 0.0012742123687280581,
+        "dt": 0.002548,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1620,7 +1582,7 @@
             -1.4057113933414076e-05,
             -0.011151041415888588
         ],
-        "maximum_lyapunov_estimated": 0.03551120315239528,
+        "maximum_lyapunov_estimated": 0.026747154244887203,
         "multiscale_entropy": 0.7137794258156454,
         "nonautonomous": false,
         "parameters": {
@@ -1636,7 +1598,7 @@
         "correlation_dimension": 1.646027113328854,
         "delay": false,
         "description": "A neuron model exhibiting spiking and bursting.",
-        "dt": 0.000350458409734955,
+        "dt": 8.059e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1650,7 +1612,7 @@
             0.0017705383465481184,
             -6.510663065519547
         ],
-        "maximum_lyapunov_estimated": 0.6535393283242747,
+        "maximum_lyapunov_estimated": 0.2621464274609406,
         "multiscale_entropy": 0.8692605688019491,
         "nonautonomous": false,
         "parameters": {
@@ -1672,7 +1634,7 @@
         "correlation_dimension": 1.988149295653683,
         "delay": false,
         "description": "A neural network with frustrated connectivity",
-        "dt": 0.002173362227038069,
+        "dt": 0.00113,
         "embedding_dimension": 6,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1692,7 +1654,7 @@
             -0.40604718386075256,
             -1.4425404449511432
         ],
-        "maximum_lyapunov_estimated": 0.5684266951234997,
+        "maximum_lyapunov_estimated": 0.07726437124258394,
         "multiscale_entropy": 0.9160145554679957,
         "nonautonomous": false,
         "parameters": {
@@ -1760,7 +1722,7 @@
         "correlation_dimension": 1.9031345525981107,
         "delay": false,
         "description": "Hyperchaos in the Lu system.",
-        "dt": 0.00011664956154566752,
+        "dt": 0.00030068702800142903,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1776,7 +1738,7 @@
             0.01646766869238271,
             -19.983737503321315
         ],
-        "maximum_lyapunov_estimated": 0.7941925747845208,
+        "maximum_lyapunov_estimated": 0.6959739496471207,
         "multiscale_entropy": 0.8910215561062699,
         "nonautonomous": false,
         "parameters": {
@@ -1796,7 +1758,7 @@
         "correlation_dimension": 2.3775113946995137,
         "delay": false,
         "description": "A hyperchaotic variant of the Finance system.",
-        "dt": 0.0001222991069250412,
+        "dt": 0.0003654032174278714,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1812,7 +1774,7 @@
             -0.003328688360603957,
             -12.747646341795276
         ],
-        "maximum_lyapunov_estimated": 1.6777584899044127,
+        "maximum_lyapunov_estimated": 1.6344436239089568,
         "multiscale_entropy": 1.1155413734604414,
         "nonautonomous": false,
         "parameters": {
@@ -1832,7 +1794,7 @@
         "correlation_dimension": 2.295404578145075,
         "delay": false,
         "description": "A hyperchaotic system.",
-        "dt": 0.00017131789889951677,
+        "dt": 0.0003746954441920209,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1848,7 +1810,7 @@
             0.005568431034995312,
             -13.022125042186726
         ],
-        "maximum_lyapunov_estimated": 0.38695361636760767,
+        "maximum_lyapunov_estimated": 0.3949499860671474,
         "multiscale_entropy": 0.8934166449122942,
         "nonautonomous": false,
         "parameters": {
@@ -1867,7 +1829,7 @@
         "correlation_dimension": 2.3256965997358985,
         "delay": false,
         "description": "A hyperchaotic variant of the Lorenz attractor.",
-        "dt": 0.00025555193801167774,
+        "dt": 0.00028984341439371934,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1883,7 +1845,7 @@
             0.04704434899468292,
             -13.118440302968889
         ],
-        "maximum_lyapunov_estimated": 0.3288809596909799,
+        "maximum_lyapunov_estimated": 0.2925643599949083,
         "multiscale_entropy": 0.8026458791332332,
         "nonautonomous": false,
         "parameters": {
@@ -1898,11 +1860,11 @@
     },
     "HyperLu": {
         "bifurcation_parameter": null,
-        "citation": "Chen, A., Lu, J., L\u00fc, J., & Yu, S. (2006). Generating hyperchaotic L\u00fc attractor via state feedback control. Physica A: Statistical Mechanics and its Applications, 364, 103-110.",
+        "citation": "J\u00fcrgen Meier (2003). Presentation of Attractors with Cinema.",
         "correlation_dimension": 2.343735648584751,
         "delay": false,
         "description": "A hyperchaotic variant of the Lu attractor.",
-        "dt": 0.00014328101980993325,
+        "dt": 0.000315613385769233,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1918,7 +1880,7 @@
             0.02849951886859947,
             -19.313823203887658
         ],
-        "maximum_lyapunov_estimated": 1.042961263138283,
+        "maximum_lyapunov_estimated": 1.0855770127041702,
         "multiscale_entropy": 1.0455788608813867,
         "nonautonomous": false,
         "parameters": {
@@ -1933,11 +1895,11 @@
     },
     "HyperPang": {
         "bifurcation_parameter": null,
-        "citation": "Pang, S., & Liu, Y. (2011). A new hyperchaotic system from the L\u00fc system and its control. Journal of Computational and Applied Mathematics, 235(8), 2775-2789.",
+        "citation": "J\u00fcrgen Meier (2003). Presentation of Attractors with Cinema.",
         "correlation_dimension": 2.409444534598458,
         "delay": false,
         "description": "A hyperchaotic system.",
-        "dt": 0.0001688156231375615,
+        "dt": 0.0003291356000406641,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1953,7 +1915,7 @@
             -0.0011541322141891326,
             -21.007696151519628
         ],
-        "maximum_lyapunov_estimated": 1.4465315511406867,
+        "maximum_lyapunov_estimated": 1.586932998381499,
         "multiscale_entropy": 0.9172158388570456,
         "nonautonomous": false,
         "parameters": {
@@ -1972,7 +1934,7 @@
         "correlation_dimension": 2.0678487037707702,
         "delay": false,
         "description": "A hyperchaotic variant of the Qi system.",
-        "dt": 1.2374139476927226e-05,
+        "dt": 2.4164213125677487e-05,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -1988,7 +1950,7 @@
             -0.04957904444451209,
             -59.32758839771818
         ],
-        "maximum_lyapunov_estimated": 12.787249321134263,
+        "maximum_lyapunov_estimated": 13.908799876284396,
         "multiscale_entropy": 0.9988440965886223,
         "nonautonomous": false,
         "parameters": {
@@ -2009,7 +1971,7 @@
         "correlation_dimension": 1.8918979971680174,
         "delay": false,
         "description": "A hyperchaotic variant of the Rossler system.",
-        "dt": 0.00022318673168449264,
+        "dt": 0.000732209408095841,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2025,7 +1987,7 @@
             -0.3014660985555502,
             -70.26609894565237
         ],
-        "maximum_lyapunov_estimated": 0.1718849632568779,
+        "maximum_lyapunov_estimated": 0.27859233648384435,
         "multiscale_entropy": 0.9144754695112332,
         "nonautonomous": false,
         "parameters": {
@@ -2044,7 +2006,7 @@
         "correlation_dimension": 2.384028593490252,
         "delay": false,
         "description": "A hyperchaotic variant of the Wang system.",
-        "dt": 0.0001296520200215312,
+        "dt": 0.0003402798297977575,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2060,7 +2022,7 @@
             -0.0075512136517132625,
             -13.986919236227278
         ],
-        "maximum_lyapunov_estimated": 1.2930140887300063,
+        "maximum_lyapunov_estimated": 1.2224015619377895,
         "multiscale_entropy": 0.9969261837212393,
         "nonautonomous": false,
         "parameters": {
@@ -2080,7 +2042,7 @@
         "correlation_dimension": 2.305709840802521,
         "delay": false,
         "description": "A hyperchaotic system.",
-        "dt": 0.00022660079191240358,
+        "dt": 0.0004584361211286094,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2096,7 +2058,7 @@
             -0.0033988115975040426,
             -13.697896294059921
         ],
-        "maximum_lyapunov_estimated": 0.9819830018599975,
+        "maximum_lyapunov_estimated": 1.0420068843753962,
         "multiscale_entropy": 0.9312323303231519,
         "nonautonomous": false,
         "parameters": {
@@ -2116,7 +2078,7 @@
         "correlation_dimension": 1.7169092247689766,
         "delay": false,
         "description": "A hyperchaotic system.",
-        "dt": 0.00018257100103951984,
+        "dt": 0.00011572652857280079,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2132,7 +2094,7 @@
             -14.977382134147613,
             -39.36365990052555
         ],
-        "maximum_lyapunov_estimated": 1.3945968455812914,
+        "maximum_lyapunov_estimated": 0.9120352761173002,
         "multiscale_entropy": 0.8166157518949907,
         "nonautonomous": false,
         "parameters": {
@@ -2151,7 +2113,7 @@
         "correlation_dimension": 2.4394788306107964,
         "delay": false,
         "description": "A hyperchaotic system.",
-        "dt": 0.00018257100103951984,
+        "dt": 0.00036508114507867846,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2167,7 +2129,7 @@
             0.023510192276255986,
             -34.77284163099938
         ],
-        "maximum_lyapunov_estimated": 0.42042732521941667,
+        "maximum_lyapunov_estimated": 0.5742688696462734,
         "multiscale_entropy": 0.9730322217427024,
         "nonautonomous": false,
         "parameters": {
@@ -2186,7 +2148,7 @@
         "correlation_dimension": 1.2140433047733024,
         "delay": true,
         "description": "A passive optical resonator system. A standard delay dimension of three is used.",
-        "dt": 0.00029831999999998973,
+        "dt": 0.0006215,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2214,7 +2176,7 @@
             -0.2833034824174493,
             -0.6392438255039592
         ],
-        "maximum_lyapunov_estimated": 0.448298365567425,
+        "maximum_lyapunov_estimated": 0.7139744431963619,
         "nonautonomous": false,
         "parameters": {
             "c": 1.0,
@@ -2226,60 +2188,13 @@
         "pesin_entropy": 0.7465581459689814,
         "unbounded_indices": []
     },
-    "InteriorSquirmer": {
-        "bifurcation_parameter": null,
-        "citation": "Blake, J. R. Self propulsion due to oscillations on the surface of a cylinder at low Reynolds number. AMS Bulletin 1971.",
-        "correlation_dimension": 2.4915316423406364,
-        "delay": false,
-        "description": "Boundary-driven flow of a viscous fluid within a cylinder. Any slip boundary condition can be used, as long as it is parametrized by its Fourier coefficients.",
-        "dt": 0.005765475552614134,
-        "embedding_dimension": 3,
-        "hamiltonian": true,
-        "initial_conditions": [
-            0.1,
-            0.1,
-            0.1
-        ],
-        "kaplan_yorke_dimension": 3.244868718449604,
-        "lyapunov_spectrum_estimated": [
-            0.84473454954854,
-            0.06626639436139446,
-            -0.7318095377786615
-        ],
-        "maximum_lyapunov_estimated": 0.84473454954854,
-        "multiscale_entropy": 0.8772895630687737,
-        "nonautonomous": true,
-        "parameters": {
-            "a": [
-                0.5,
-                0.5,
-                0.5,
-                0.5,
-                0.5
-            ],
-            "g": [
-                0.5,
-                0.5,
-                0.5,
-                0.5,
-                0.5
-            ],
-            "n": 5,
-            "tau": 3
-        },
-        "period": 28.822573200111794,
-        "pesin_entropy": 0.9110009439099345,
-        "unbounded_indices": [
-            2
-        ]
-    },
     "IsothermalChemical": {
         "bifurcation_parameter": null,
         "citation": "Petrov, Scott, Showalter. Mixed-mode oscillations in chemical systems. J Chem Phys 1992",
         "correlation_dimension": 1.0903385466106001,
         "delay": false,
         "description": "An isothermal chemical system with mixed-mode oscillations",
-        "dt": 0.00014608034672445314,
+        "dt": 8.907e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2293,7 +2208,7 @@
             -0.05136527222093221,
             -7.392541736904205
         ],
-        "maximum_lyapunov_estimated": 0.450090505359164,
+        "maximum_lyapunov_estimated": 0.3365871343421436,
         "multiscale_entropy": 0.6589422003608746,
         "nonautonomous": false,
         "parameters": {
@@ -2312,7 +2227,7 @@
         "correlation_dimension": 1.0127192656492157,
         "delay": false,
         "description": "A model of cancer cell populations.",
-        "dt": 0.009949658276379978,
+        "dt": 0.002487,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2326,7 +2241,7 @@
             -0.0135394920593605,
             -0.5610833889492404
         ],
-        "maximum_lyapunov_estimated": 0.03621509684991421,
+        "maximum_lyapunov_estimated": 0.022156938955395417,
         "multiscale_entropy": 0.5883298730506914,
         "nonautonomous": false,
         "parameters": {
@@ -2349,7 +2264,7 @@
         "correlation_dimension": 1.836822800294913,
         "delay": false,
         "description": "An electronic circuit with nonlinearity provided by a diode.",
-        "dt": 0.003891568594765431,
+        "dt": 0.000749,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2363,7 +2278,7 @@
             0.1849026306096344,
             -1.1407351759248092
         ],
-        "maximum_lyapunov_estimated": 0.2922722771543928,
+        "maximum_lyapunov_estimated": 0.394872929553187,
         "multiscale_entropy": 0.38139916676685187,
         "nonautonomous": false,
         "parameters": {
@@ -2380,7 +2295,7 @@
         "correlation_dimension": 0.49778489205270265,
         "delay": false,
         "description": "A chemical oscillator model describing mixed-modes in the BZ equations.",
-        "dt": 0.0015985997666280128,
+        "dt": 0.00959,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2394,7 +2309,7 @@
             -0.06145426210744069,
             -0.31683393262481707
         ],
-        "maximum_lyapunov_estimated": 0.0757060839542753,
+        "maximum_lyapunov_estimated": 0.02560751992932341,
         "multiscale_entropy": 0.5935098791328474,
         "nonautonomous": false,
         "parameters": {
@@ -2413,7 +2328,7 @@
         "correlation_dimension": 1.7191054642322454,
         "delay": false,
         "description": "A semiconductor laser model",
-        "dt": 0.00018936556092683077,
+        "dt": 8.52e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2427,7 +2342,7 @@
             0.020943250302999646,
             -15.909545615344538
         ],
-        "maximum_lyapunov_estimated": 0.6080602180196161,
+        "maximum_lyapunov_estimated": 0.7637435195473311,
         "multiscale_entropy": 1.004437967414151,
         "nonautonomous": false,
         "parameters": {
@@ -2442,49 +2357,13 @@
         "pesin_entropy": 0.7848314215142518,
         "unbounded_indices": []
     },
-    "LidDrivenCavityFlow": {
-        "bifurcation_parameter": null,
-        "citation": "Grover et al. Chaos (2012). Topological chaos, braiding and bifurcation of almost-cyclic sets.",
-        "correlation_dimension": 2.4669485126996986,
-        "delay": false,
-        "description": "A two-dimensional flow alternately driven by translation of the left and right walls.",
-        "dt": 0.000546753824549171,
-        "embedding_dimension": 3,
-        "hamiltonian": true,
-        "initial_conditions": [
-            3.966790341130254,
-            0.18425981346720144,
-            0.0
-        ],
-        "kaplan_yorke_dimension": 2.9856669109882814,
-        "lyapunov_spectrum_estimated": [
-            1.00757312,
-            -0.00276829,
-            -1.01941623
-        ],
-        "maximum_lyapunov_estimated": 2.172601412109087,
-        "multiscale_entropy": 0.7815824521381879,
-        "nonautonomous": true,
-        "parameters": {
-            "a": 6.0,
-            "b": 1.0,
-            "tau": 1.1,
-            "u1": 9.92786,
-            "u2": 8.34932
-        },
-        "period": 2.7333134945588955,
-        "pesin_entropy": 1.007573134065856,
-        "unbounded_indices": [
-            2
-        ]
-    },
     "LiuChen": {
         "bifurcation_parameter": null,
         "citation": "Liu, Chen. Int J Bifurcat Chaos. 2004: 1395-1403.",
         "correlation_dimension": 1.06018642946504,
         "delay": false,
         "description": "Derived from Sakarya.",
-        "dt": 0.0016035472578764143,
+        "dt": 0.0001483,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2498,7 +2377,7 @@
             -0.9748996261500176,
             -18.807059276226646
         ],
-        "maximum_lyapunov_estimated": 0.2457084451352168,
+        "maximum_lyapunov_estimated": 0.2133214258413513,
         "multiscale_entropy": 0.7641473604711979,
         "nonautonomous": false,
         "parameters": {
@@ -2521,7 +2400,7 @@
         "correlation_dimension": 1.993931310517824,
         "delay": false,
         "description": "A minimal weather model based on atmospheric convection.",
-        "dt": 0.0003002100350058257,
+        "dt": 0.0001801,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2535,7 +2414,7 @@
             0.02994120961308413,
             -14.915552395875103
         ],
-        "maximum_lyapunov_estimated": 0.8917098035724058,
+        "maximum_lyapunov_estimated": 1.0910931847726466,
         "multiscale_entropy": 1.1541457906835575,
         "nonautonomous": false,
         "parameters": {
@@ -2553,7 +2432,7 @@
         "correlation_dimension": 1.8667731027742769,
         "delay": false,
         "description": "Atmospheric circulation analogous to Hadley convection.",
-        "dt": 0.0012519286547757248,
+        "dt": 0.000363,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2567,7 +2446,7 @@
             -0.045398035352994866,
             -2.251992293230755
         ],
-        "maximum_lyapunov_estimated": 0.46146683857936616,
+        "maximum_lyapunov_estimated": 1.0474807193950644,
         "multiscale_entropy": 0.6685802317710752,
         "nonautonomous": false,
         "parameters": {
@@ -2586,7 +2465,7 @@
         "correlation_dimension": 2.2561447518650386,
         "delay": false,
         "description": "A climate model containing fluid-like advective nonlinearities, and multiscale coupling of fast and slow variables.",
-        "dt": 0.00043945324220700854,
+        "dt": 0.0001428,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2602,7 +2481,7 @@
             -1.1936282999960617,
             -3.550455057872212
         ],
-        "maximum_lyapunov_estimated": 1.3361667787286362,
+        "maximum_lyapunov_estimated": 1.6247012663091516,
         "multiscale_entropy": 0.8046726640855828,
         "nonautonomous": false,
         "parameters": {
@@ -2618,7 +2497,7 @@
         "correlation_dimension": 1.9641115851657072,
         "delay": false,
         "description": "The Lorenz attractor in the presence of a confining potential.",
-        "dt": 0.00027436572762127296,
+        "dt": 0.0002606,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2632,7 +2511,7 @@
             0.001413707285345669,
             -12.120634680260636
         ],
-        "maximum_lyapunov_estimated": 0.7124135270827626,
+        "maximum_lyapunov_estimated": 0.8497533717540197,
         "multiscale_entropy": 1.1983193915488475,
         "nonautonomous": false,
         "parameters": {
@@ -2651,7 +2530,7 @@
         "correlation_dimension": 2.3989498239642524,
         "delay": false,
         "description": "Two coupled Lorenz attractors.",
-        "dt": 0.0003241940323387382,
+        "dt": 0.0001799,
         "embedding_dimension": 6,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2671,7 +2550,7 @@
             -13.618111101381306,
             -15.073328947851422
         ],
-        "maximum_lyapunov_estimated": 1.0284398414904556,
+        "maximum_lyapunov_estimated": 1.2218762961515068,
         "multiscale_entropy": 1.1717493753138832,
         "nonautonomous": false,
         "parameters": {
@@ -2692,7 +2571,7 @@
         "correlation_dimension": 2.119146547661978,
         "delay": false,
         "description": "Atmospheric acoustic-gravity waves.",
-        "dt": 0.0007776724692212156,
+        "dt": 0.0006259,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2708,7 +2587,7 @@
             -2.7358399678801906,
             -3.4213273148340293
         ],
-        "maximum_lyapunov_estimated": 0.3807742646421621,
+        "maximum_lyapunov_estimated": 0.44944459925783387,
         "multiscale_entropy": 1.0299236916146275,
         "nonautonomous": false,
         "parameters": {
@@ -2727,7 +2606,7 @@
         "correlation_dimension": 1.372789971167648,
         "delay": false,
         "description": "A system that switches shapes between the Lorenz and Chen attractors as the parameter c is varied from 12.7 to 28.5. Also called the Chen Celikovsky attractor",
-        "dt": 0.00046777796299380726,
+        "dt": 0.0001216,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2741,7 +2620,7 @@
             0.1450338199952451,
             -22.56999542505058
         ],
-        "maximum_lyapunov_estimated": 0.3266868574498627,
+        "maximum_lyapunov_estimated": 0.6651845739025707,
         "multiscale_entropy": 0.4483903807918106,
         "nonautonomous": false,
         "parameters": {
@@ -2759,7 +2638,7 @@
         "correlation_dimension": 1.7225991312358646,
         "delay": false,
         "description": "A four scroll attractor that reduces to Lorenz-like dynamics under bifurcations.",
-        "dt": 0.00018469678279714685,
+        "dt": 0.0001108,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2773,7 +2652,7 @@
             -0.012414362698175424,
             -11.556516575635818
         ],
-        "maximum_lyapunov_estimated": 0.2612775880231121,
+        "maximum_lyapunov_estimated": 0.35106210160478324,
         "multiscale_entropy": 0.6029763775293518,
         "nonautonomous": false,
         "parameters": {
@@ -2791,7 +2670,7 @@
         "correlation_dimension": 2.2702320395980986,
         "delay": false,
         "description": "Population abundances in a plankton community, based on MacArthur's consumer resource model. Growth rates are determined using Liebig's law of the maximum",
-        "dt": 0.008682647107852971,
+        "dt": 0.004384,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2819,7 +2698,7 @@
             -0.3058908399877519,
             -17.37453227551654
         ],
-        "maximum_lyapunov_estimated": 0.2494638510848618,
+        "maximum_lyapunov_estimated": 0.1934617869736995,
         "multiscale_entropy": 0.7844902548776685,
         "nonautonomous": false,
         "parameters": {
@@ -2918,7 +2797,7 @@
         "correlation_dimension": 1.7750825878015626,
         "delay": true,
         "description": "A physiological circuit with time-delayed feedback. A standard delay dimension of three is used.",
-        "dt": 0.0012027363718948435,
+        "dt": 0.001243,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2946,7 +2825,7 @@
             -0.18584871959889662,
             -2.2412562118189827
         ],
-        "maximum_lyapunov_estimated": 0.07287527454565443,
+        "maximum_lyapunov_estimated": 0.21081023801544096,
         "nonautonomous": false,
         "parameters": {
             "beta": 2,
@@ -2954,7 +2833,7 @@
             "n": 9.65,
             "tau": 2.0
         },
-        "period": 5.9612230962292045,
+        "period": 7.43264,
         "pesin_entropy": 0.3741375523997009,
         "unbounded_indices": []
     },
@@ -2964,7 +2843,7 @@
         "correlation_dimension": 1.8466427700305443,
         "delay": false,
         "description": "A thermo-mechanical oscillator.",
-        "dt": 0.00025778296382725327,
+        "dt": 0.0001598,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -2978,7 +2857,7 @@
             -0.022079955878999143,
             -1.1975751283606624
         ],
-        "maximum_lyapunov_estimated": 0.6976623003008144,
+        "maximum_lyapunov_estimated": 0.4074353399833356,
         "multiscale_entropy": 0.5401952179209213,
         "nonautonomous": false,
         "parameters": {
@@ -2996,7 +2875,7 @@
         "correlation_dimension": 1.7519423469999007,
         "delay": false,
         "description": "Multiple interacting Chua electronic circuits.",
-        "dt": 0.00045179529921654196,
+        "dt": 0.0007589,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3010,7 +2889,7 @@
             -0.00140279701621115,
             -3.10264254580399
         ],
-        "maximum_lyapunov_estimated": 1.462134784614238,
+        "maximum_lyapunov_estimated": 0.2210571234274344,
         "multiscale_entropy": 0.8118881305702679,
         "nonautonomous": false,
         "parameters": {
@@ -3043,7 +2922,7 @@
         "correlation_dimension": 2.0051574625339903,
         "delay": false,
         "description": "Euler's equations for a rigid body, augmented with a linear feedback term.",
-        "dt": 0.0017021836972827486,
+        "dt": 0.0009871,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3057,7 +2936,7 @@
             -0.00036976661148194504,
             -0.7795789311467557
         ],
-        "maximum_lyapunov_estimated": 0.14945341784639976,
+        "maximum_lyapunov_estimated": 0.1723564207468104,
         "multiscale_entropy": 0.6322918700854281,
         "nonautonomous": false,
         "parameters": {
@@ -3074,7 +2953,7 @@
         "correlation_dimension": 1.9624149541987226,
         "delay": false,
         "description": "Fixed temperature molecular dynamics for a strained flow under a reduced order model.",
-        "dt": 0.0011736556092682804,
+        "dt": 0.0009857,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3088,7 +2967,7 @@
             0.0013844486958287268,
             -0.011653762286922777
         ],
-        "maximum_lyapunov_estimated": 0.010464383779400952,
+        "maximum_lyapunov_estimated": 0.04757010871740569,
         "multiscale_entropy": 0.5656074689683536,
         "nonautonomous": false,
         "parameters": {
@@ -3104,7 +2983,7 @@
         "correlation_dimension": 2.0980551223412083,
         "delay": false,
         "description": "A quadrupole boson Hamiltonian that produces chaos via a resonance overlap mechanism",
-        "dt": 0.0012048161873133268,
+        "dt": 0.03277,
         "embedding_dimension": 4,
         "hamiltonian": true,
         "initial_conditions": [
@@ -3120,7 +2999,7 @@
             -0.00449888101008936,
             -0.2658004759134054
         ],
-        "maximum_lyapunov_estimated": 0.29554197767663787,
+        "maximum_lyapunov_estimated": 0.27858365099437626,
         "multiscale_entropy": 0.8209529097052416,
         "nonautonomous": false,
         "parameters": {
@@ -3138,7 +3017,7 @@
         "correlation_dimension": 2.346659533315372,
         "delay": false,
         "description": "A model fluid flow that produces KAM tori. Original parameters have been rescaled by k",
-        "dt": 0.004772195365894731,
+        "dt": 0.002672,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3152,7 +3031,7 @@
             -0.005029615144529367,
             -0.43888500460322705
         ],
-        "maximum_lyapunov_estimated": 0.13470179997834794,
+        "maximum_lyapunov_estimated": 0.4274159768365288,
         "multiscale_entropy": 0.6177682255070645,
         "nonautonomous": true,
         "parameters": {
@@ -3174,7 +3053,7 @@
         "correlation_dimension": 0.7715266839229182,
         "delay": false,
         "description": "A named attractor related to the DequanLi attractor",
-        "dt": 0.00035663943990670076,
+        "dt": 0.0007607,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3188,7 +3067,7 @@
             0.01603608355912526,
             -13.744271396596757
         ],
-        "maximum_lyapunov_estimated": 0.6132378917107628,
+        "maximum_lyapunov_estimated": 0.8697394318152157,
         "multiscale_entropy": 1.0993195372407014,
         "nonautonomous": false,
         "parameters": {
@@ -3209,7 +3088,7 @@
         "correlation_dimension": 1.7200323215068793,
         "delay": false,
         "description": "A system with quadratic nonlinearity, which undergoes Hopf bifurcations of codimension 1 and 2.",
-        "dt": 0.0007498715849322934,
+        "dt": 0.01299,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3223,7 +3102,7 @@
             0.0015323304198873254,
             -0.6168618108533457
         ],
-        "maximum_lyapunov_estimated": 0.10415076085878888,
+        "maximum_lyapunov_estimated": 0.0951232752895907,
         "multiscale_entropy": 0.6547493000137818,
         "nonautonomous": false,
         "parameters": {},
@@ -3237,20 +3116,20 @@
         "correlation_dimension": 1.3715663776355644,
         "delay": true,
         "description": "A delay model that can be implemented as an electronic circuit. A standard delay dimension of three is used.",
-        "dt": 0.01059473019233792,
+        "dt": 0.07032,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
-            -0.37155972,
-            -0.55024994,
-            -1.07760125,
-            -2.08210946,
-            -2.92172609,
-            0.22026821,
-            2.18909877,
-            1.43553442,
-            0.47734972,
-            1.36510289
+            2.34555749,
+            1.47680635,
+            0.82341021,
+            1.732819,
+            2.6907941,
+            2.37671687,
+            -1.63813079,
+            -2.08396784,
+            -1.73699867,
+            -1.12395851
         ],
         "kaplan_yorke_dimension": 9.098082330516,
         "lyapunov_spectrum_estimated": [
@@ -3265,7 +3144,7 @@
             -0.004928520908431463,
             -0.5553991058827761
         ],
-        "maximum_lyapunov_estimated": 0.036102233030474856,
+        "maximum_lyapunov_estimated": 0.014785562725300386,
         "nonautonomous": false,
         "parameters": {
             "alpha": 1.0,
@@ -3273,7 +3152,7 @@
             "c": 2.24,
             "tau": 4.9
         },
-        "period": 52.99484890125133,
+        "period": 59.92807058823529,
         "pesin_entropy": 0.014785562725300386,
         "unbounded_indices": []
     },
@@ -3283,7 +3162,7 @@
         "correlation_dimension": 1.8913519055600239,
         "delay": false,
         "description": "A hyperchaotic system with a wide power spectrum.",
-        "dt": 8.165560926819638e-05,
+        "dt": 0.00069418,
         "embedding_dimension": 4,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3299,7 +3178,7 @@
             -4.347891883424509,
             -44.356041824978305
         ],
-        "maximum_lyapunov_estimated": 2.1916060472989556,
+        "maximum_lyapunov_estimated": 2.0360429519545677,
         "multiscale_entropy": 0.8855652233700573,
         "nonautonomous": false,
         "parameters": {
@@ -3318,7 +3197,7 @@
         "correlation_dimension": 1.830987290684598,
         "delay": false,
         "description": "A double-wing chaotic attractor that arises from two bistable attractors. The system has quadratic nonlinearity.",
-        "dt": 7.837106184364728e-05,
+        "dt": 4.153e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3332,7 +3211,7 @@
             0.13379585631170307,
             -43.8359895934497
         ],
-        "maximum_lyapunov_estimated": 4.0275703123027435,
+        "maximum_lyapunov_estimated": 3.8880075026301206,
         "multiscale_entropy": 0.846453868214798,
         "nonautonomous": false,
         "parameters": {
@@ -3350,7 +3229,7 @@
         "correlation_dimension": 2.0781334886735414,
         "delay": false,
         "description": "A reduced-order model of propagating waves in monequilibrium media.",
-        "dt": 0.0004671978663111531,
+        "dt": 0.0005045,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3364,7 +3243,7 @@
             1.7068504600119996e-05,
             -0.6717710576786404
         ],
-        "maximum_lyapunov_estimated": 0.2541443669572464,
+        "maximum_lyapunov_estimated": 0.24233580922074083,
         "multiscale_entropy": 0.9189339042839536,
         "nonautonomous": false,
         "parameters": {
@@ -3381,7 +3260,7 @@
         "correlation_dimension": 1.9218207098924294,
         "delay": false,
         "description": "A reduced-order model of a convective cell.",
-        "dt": 0.00018396466077678754,
+        "dt": 0.0001122,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3395,7 +3274,7 @@
             0.3076248958606731,
             -19.04195798211122
         ],
-        "maximum_lyapunov_estimated": 1.8138795790741327,
+        "maximum_lyapunov_estimated": 1.7098267053321798,
         "multiscale_entropy": 0.9190517908569512,
         "nonautonomous": false,
         "parameters": {
@@ -3413,7 +3292,7 @@
         "correlation_dimension": 1.9056463792003642,
         "delay": false,
         "description": "Electric current and magnetic field of two coupled disk dynamos.",
-        "dt": 0.0011796966161026034,
+        "dt": 0.0007077,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3427,7 +3306,7 @@
             0.0007222098218782572,
             -2.1743990404663296
         ],
-        "maximum_lyapunov_estimated": 0.1318127385277225,
+        "maximum_lyapunov_estimated": 0.14571192786308473,
         "multiscale_entropy": 0.9664471212975273,
         "nonautonomous": false,
         "parameters": {
@@ -3444,7 +3323,7 @@
         "correlation_dimension": 1.796820702938341,
         "delay": false,
         "description": "Spiral-type chaos in a simple oscillator model.",
-        "dt": 0.001181916986164424,
+        "dt": 0.0007563,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3458,7 +3337,7 @@
             0.007522476799147231,
             -5.741024338716747
         ],
-        "maximum_lyapunov_estimated": 0.15059688939547888,
+        "maximum_lyapunov_estimated": 0.07633013937806932,
         "multiscale_entropy": 0.605878349292794,
         "nonautonomous": false,
         "parameters": {
@@ -3476,7 +3355,7 @@
         "correlation_dimension": 1.9824460344125072,
         "delay": false,
         "description": "Two-dimensional convection in a horizontal layer of Boussinesq fluid with lateral constraints.",
-        "dt": 0.0012146224370729896,
+        "dt": 0.0007408,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3490,7 +3369,7 @@
             -0.0039065765687848,
             -3.2151284307504713
         ],
-        "maximum_lyapunov_estimated": 0.1936356650629198,
+        "maximum_lyapunov_estimated": 0.18286378999435815,
         "multiscale_entropy": 0.6441822675461503,
         "nonautonomous": false,
         "parameters": {
@@ -3507,7 +3386,7 @@
         "correlation_dimension": 2.055704010721625,
         "delay": false,
         "description": "An attractor that arises due to merging of two disjoint bistable attractors.",
-        "dt": 0.0009970461743625946,
+        "dt": 0.0004486,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3521,7 +3400,7 @@
             0.00035292037656675234,
             -1.2584697568737606
         ],
-        "maximum_lyapunov_estimated": 0.26501036485491514,
+        "maximum_lyapunov_estimated": 0.3080921246264039,
         "multiscale_entropy": 0.6082767822064958,
         "nonautonomous": false,
         "parameters": {
@@ -3544,7 +3423,7 @@
         "correlation_dimension": 1.699295461860061,
         "delay": false,
         "description": "An eco-epidemiological model of bird and fish abundances in the Salton sea of southern California.",
-        "dt": 0.00019350825137522067,
+        "dt": 0.0002728,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3558,7 +3437,7 @@
             -0.0037578848522063194,
             -4.592867667006148
         ],
-        "maximum_lyapunov_estimated": 1.0702552017260383,
+        "maximum_lyapunov_estimated": 0.3914445015077359,
         "multiscale_entropy": 0.9335269725171643,
         "nonautonomous": false,
         "parameters": {
@@ -3581,7 +3460,7 @@
         "correlation_dimension": 2.067524991580239,
         "delay": false,
         "description": "A two-scroll attractor arising from dynamical equations with piecewise nonlinearities. Equivalent to the Wimol-Banlue system",
-        "dt": 0.0014933288881479711,
+        "dt": 0.001941,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3595,7 +3474,7 @@
             -0.0002916165416126154,
             -1.2296759041605134
         ],
-        "maximum_lyapunov_estimated": 0.2606135207962152,
+        "maximum_lyapunov_estimated": 0.23913890446639052,
         "multiscale_entropy": 0.9947542017597873,
         "nonautonomous": false,
         "parameters": {
@@ -3611,7 +3490,7 @@
         "correlation_dimension": 1.6731262397195827,
         "delay": true,
         "description": "A delay model that can be implemented as an electronic circuit. A standard delay dimension of three is used.",
-        "dt": 0.030694772119777555,
+        "dt": 0.01215,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3639,14 +3518,14 @@
             -0.008605197946011937,
             -0.012607310979495853
         ],
-        "maximum_lyapunov_estimated": 0.024859095331628417,
+        "maximum_lyapunov_estimated": 0.016452858090143806,
         "nonautonomous": false,
         "parameters": {
             "alpha": 0.2,
             "beta": 0.2,
             "tau": 10.0
         },
-        "period": 152.40701151828662,
+        "period": 48.5132,
         "pesin_entropy": 0.016452858090143806,
         "unbounded_indices": []
     },
@@ -3656,7 +3535,7 @@
         "correlation_dimension": 1.7168454070369197,
         "delay": false,
         "description": "A system that bifurcates from a symmetric limit cycle to an asymmetric one, similar to the Lorenz attractor.",
-        "dt": 0.002408001333556058,
+        "dt": 0.002215,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3670,7 +3549,7 @@
             -1.3942528300804223e-05,
             -1.409991553164768
         ],
-        "maximum_lyapunov_estimated": 0.03577425334463406,
+        "maximum_lyapunov_estimated": 0.044032234819090736,
         "multiscale_entropy": 0.7156563118943259,
         "nonautonomous": false,
         "parameters": {
@@ -3687,7 +3566,7 @@
         "correlation_dimension": 1.9642234277909487,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.001274781694385183,
+        "dt": 0.01299,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3701,7 +3580,7 @@
             0.004990159457687409,
             -0.0015561317158397701
         ],
-        "maximum_lyapunov_estimated": 0.012993052652429771,
+        "maximum_lyapunov_estimated": 0.029259920155059096,
         "multiscale_entropy": 0.5748267225365974,
         "nonautonomous": false,
         "parameters": {},
@@ -3715,7 +3594,7 @@
         "correlation_dimension": 1.9347401711496346,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0022103969709235116,
+        "dt": 0.0008119,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3729,7 +3608,7 @@
             0.005187437926969091,
             -1.2145826242115807
         ],
-        "maximum_lyapunov_estimated": 0.20674275256006883,
+        "maximum_lyapunov_estimated": 0.2198750386697164,
         "multiscale_entropy": 0.8826029903839796,
         "nonautonomous": false,
         "parameters": {},
@@ -3743,7 +3622,7 @@
         "correlation_dimension": 1.903676120558973,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.001777336222703525,
+        "dt": 0.001084,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3757,7 +3636,7 @@
             -0.0007304674803429964,
             -1.1644550651924115
         ],
-        "maximum_lyapunov_estimated": 0.15806924766944033,
+        "maximum_lyapunov_estimated": 0.17898394736414458,
         "multiscale_entropy": 1.14839462464542,
         "nonautonomous": false,
         "parameters": {},
@@ -3771,7 +3650,7 @@
         "correlation_dimension": 1.950013918317399,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0009668211368563107,
+        "dt": 0.001769,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3785,7 +3664,7 @@
             0.001787998513315278,
             -1.4601870646976078
         ],
-        "maximum_lyapunov_estimated": 0.10170941886932346,
+        "maximum_lyapunov_estimated": 0.11415315682442646,
         "multiscale_entropy": 1.0030259093693934,
         "nonautonomous": false,
         "parameters": {},
@@ -3799,7 +3678,7 @@
         "correlation_dimension": 1.6845848125572829,
         "delay": true,
         "description": "An algebraically simple delay equation. A standard delay dimension of three is used.",
-        "dt": 0.0028125,
+        "dt": 0.001875,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3827,7 +3706,7 @@
             -0.012665556385738196,
             -0.014601336849935557
         ],
-        "maximum_lyapunov_estimated": 0.0794701998101797,
+        "maximum_lyapunov_estimated": 0.2056760250875861,
         "nonautonomous": false,
         "parameters": {
             "c": 0.0,
@@ -3845,7 +3724,7 @@
         "correlation_dimension": 1.5319512189227282,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0015257542923819757,
+        "dt": 0.0008543,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3859,7 +3738,7 @@
             -0.00031069798260046597,
             -1.0953799295090543
         ],
-        "maximum_lyapunov_estimated": 0.09016067590084897,
+        "maximum_lyapunov_estimated": 0.09834470642927143,
         "multiscale_entropy": 0.8387888716672988,
         "nonautonomous": false,
         "parameters": {},
@@ -3873,7 +3752,7 @@
         "correlation_dimension": 2.248574151957115,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0038494415735954137,
+        "dt": 0.001655,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3887,7 +3766,7 @@
             0.0192716855937824,
             -0.603011686855317
         ],
-        "maximum_lyapunov_estimated": 0.1183090101484132,
+        "maximum_lyapunov_estimated": 0.13246006583273318,
         "multiscale_entropy": 0.7674306147320477,
         "nonautonomous": false,
         "parameters": {
@@ -3903,7 +3782,7 @@
         "correlation_dimension": 1.4356008167477212,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0017422303717285104,
+        "dt": 0.00216,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3917,7 +3796,7 @@
             -0.0012749369106980868,
             -0.6182204265060449
         ],
-        "maximum_lyapunov_estimated": 0.09067832253388744,
+        "maximum_lyapunov_estimated": 0.03349131570257799,
         "multiscale_entropy": 0.6185493944257671,
         "nonautonomous": false,
         "parameters": {
@@ -3933,7 +3812,7 @@
         "correlation_dimension": 2.1841850324956043,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.004046474412402859,
+        "dt": 0.001416,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3947,7 +3826,7 @@
             0.003501431527456669,
             -0.5889065665901029
         ],
-        "maximum_lyapunov_estimated": 0.13100182470690253,
+        "maximum_lyapunov_estimated": 0.13871794302385682,
         "multiscale_entropy": 0.6325364503922819,
         "nonautonomous": false,
         "parameters": {
@@ -3963,7 +3842,7 @@
         "correlation_dimension": 1.5880853049819768,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.002186364394065663,
+        "dt": 0.003104,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -3977,7 +3856,7 @@
             9.478591964272237e-06,
             -1.031514712617076
         ],
-        "maximum_lyapunov_estimated": 0.023218704376506836,
+        "maximum_lyapunov_estimated": 0.020459651934364873,
         "multiscale_entropy": 0.5893805046352655,
         "nonautonomous": false,
         "parameters": {
@@ -3993,7 +3872,7 @@
         "correlation_dimension": 1.7631890086601887,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0009673612268710486,
+        "dt": 0.001209,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4007,7 +3886,7 @@
             0.0010621228852282804,
             -2.055842238064512
         ],
-        "maximum_lyapunov_estimated": 0.12290789099642041,
+        "maximum_lyapunov_estimated": 0.04451808076432957,
         "multiscale_entropy": 0.6352974298685767,
         "nonautonomous": false,
         "parameters": {},
@@ -4021,7 +3900,7 @@
         "correlation_dimension": 1.1444423838257205,
         "delay": false,
         "description": "An algebraidally simple flow depending on a third time derivative. Numerical integration of this attractor is extremely sensitive to the initial conditions",
-        "dt": 0.0023845974329054797,
+        "dt": 0.002408,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4035,7 +3914,7 @@
             -0.0007831911114099333,
             -2.1347047232043663
         ],
-        "maximum_lyapunov_estimated": 0.08785190282162628,
+        "maximum_lyapunov_estimated": 0.06738258231535932,
         "multiscale_entropy": 0.5314887786603959,
         "nonautonomous": false,
         "parameters": {
@@ -4051,7 +3930,7 @@
         "correlation_dimension": 1.817781482577807,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0014014335722617943,
+        "dt": 0.001177,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4065,7 +3944,7 @@
             -0.0005109461395399151,
             -0.8934722146671759
         ],
-        "maximum_lyapunov_estimated": 0.05962593786799159,
+        "maximum_lyapunov_estimated": 0.03778259119323125,
         "multiscale_entropy": 0.6562812206790845,
         "nonautonomous": false,
         "parameters": {
@@ -4081,7 +3960,7 @@
         "correlation_dimension": 1.410583582611956,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0013454642440407839,
+        "dt": 0.0008475,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4095,7 +3974,7 @@
             -0.000391471796353918,
             -1.012962157697122
         ],
-        "maximum_lyapunov_estimated": 0.09216197583296963,
+        "maximum_lyapunov_estimated": 0.03407149258791976,
         "multiscale_entropy": 0.5605870039438788,
         "nonautonomous": false,
         "parameters": {
@@ -4112,7 +3991,7 @@
         "correlation_dimension": 1.5501956414464297,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0010730588431405862,
+        "dt": 0.002017,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4126,7 +4005,7 @@
             -0.00033063791832836577,
             -1.0391447706177515
         ],
-        "maximum_lyapunov_estimated": 0.08422043130700084,
+        "maximum_lyapunov_estimated": 0.05230117379497564,
         "multiscale_entropy": 0.7481178461456197,
         "nonautonomous": false,
         "parameters": {
@@ -4142,7 +4021,7 @@
         "correlation_dimension": 2.234865750080784,
         "delay": false,
         "description": "A multifractal system with a nearly 3D attractor",
-        "dt": 0.0013244125162412957,
+        "dt": 0.001769,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4156,7 +4035,7 @@
             -0.0001641583999746131,
             -0.31918544080126926
         ],
-        "maximum_lyapunov_estimated": 1.0946909441433958,
+        "maximum_lyapunov_estimated": 0.3249983459604661,
         "multiscale_entropy": 0.6370154977546665,
         "nonautonomous": false,
         "parameters": {},
@@ -4170,7 +4049,7 @@
         "correlation_dimension": 1.7798181024992923,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0009628604767459592,
+        "dt": 0.001213,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4184,7 +4063,7 @@
             6.560209716837452e-05,
             -2.101648044064128
         ],
-        "maximum_lyapunov_estimated": 0.11869612209728901,
+        "maximum_lyapunov_estimated": 0.060958614491943536,
         "multiscale_entropy": 0.6385218945868028,
         "nonautonomous": false,
         "parameters": {},
@@ -4198,7 +4077,7 @@
         "correlation_dimension": 1.710108209511237,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.001951325220870217,
+        "dt": 0.001951,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4212,7 +4091,7 @@
             0.011533284505120292,
             -0.3165440349833235
         ],
-        "maximum_lyapunov_estimated": 0.09141077854590315,
+        "maximum_lyapunov_estimated": 0.06685684927644238,
         "multiscale_entropy": 0.4161154943097029,
         "nonautonomous": false,
         "parameters": {
@@ -4228,7 +4107,7 @@
         "correlation_dimension": 1.9850786402587843,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0010684580763461328,
+        "dt": 0.001549,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4242,7 +4121,7 @@
             0.00025136328640969387,
             -0.4843551814513015
         ],
-        "maximum_lyapunov_estimated": 0.1064676723437159,
+        "maximum_lyapunov_estimated": 0.10261657056457861,
         "multiscale_entropy": 0.8486396469370624,
         "nonautonomous": false,
         "parameters": {
@@ -4258,7 +4137,7 @@
         "correlation_dimension": 1.831711145721785,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0009690215035840311,
+        "dt": 0.001618,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4272,7 +4151,7 @@
             0.0010386716745898255,
             -0.6140516336902575
         ],
-        "maximum_lyapunov_estimated": 0.17169784338063596,
+        "maximum_lyapunov_estimated": 0.13698250147166127,
         "multiscale_entropy": 0.8105158145249107,
         "nonautonomous": false,
         "parameters": {
@@ -4289,7 +4168,7 @@
         "correlation_dimension": 1.831336989240481,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0014028938156360482,
+        "dt": 0.001585,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4303,7 +4182,7 @@
             0.0013697096816499383,
             -1.0784000269941107
         ],
-        "maximum_lyapunov_estimated": 0.09661415277799693,
+        "maximum_lyapunov_estimated": 0.07608481335025485,
         "multiscale_entropy": 0.5877166245477188,
         "nonautonomous": false,
         "parameters": {
@@ -4320,7 +4199,7 @@
         "correlation_dimension": 1.909825606415139,
         "delay": false,
         "description": "A member of the Sprott family of algebraically-simple chaotic sytems.",
-        "dt": 0.0006702117019503362,
+        "dt": 0.0013,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4334,7 +4213,7 @@
             0.0030194370306177213,
             -1.1945344436340624
         ],
-        "maximum_lyapunov_estimated": 0.2737629235389973,
+        "maximum_lyapunov_estimated": 0.2149312025337423,
         "multiscale_entropy": 0.6690400524585065,
         "nonautonomous": false,
         "parameters": {},
@@ -4348,7 +4227,7 @@
         "correlation_dimension": 1.0564310259305965,
         "delay": false,
         "description": "A multiattractor system that goes to a torus or a complex attractor depending on the initial conditions.",
-        "dt": 0.0027218536422742544,
+        "dt": 0.0006259,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4362,7 +4241,7 @@
             0.0005468818242604863,
             -0.3910853761095065
         ],
-        "maximum_lyapunov_estimated": 0.1056964344650892,
+        "maximum_lyapunov_estimated": 0.29656066211909027,
         "multiscale_entropy": 0.9562901894463037,
         "nonautonomous": false,
         "parameters": {},
@@ -4376,7 +4255,7 @@
         "correlation_dimension": 1.7159805502964127,
         "delay": false,
         "description": "A weakly forced (quasiautonomous) oscillator with dynamics similar to stick-slip friction. The parameter gamma controls the transition to chaos.",
-        "dt": 0.00032263377229540424,
+        "dt": 0.0001,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4390,7 +4269,7 @@
             3.356854711815694e-05,
             -0.02131392884593247
         ],
-        "maximum_lyapunov_estimated": 0.06406131604734494,
+        "maximum_lyapunov_estimated": 0.07073329226101452,
         "multiscale_entropy": 0.9213029740441252,
         "nonautonomous": true,
         "parameters": {
@@ -4415,8 +4294,8 @@
         "citation": "Tufillaro, Nicholas B.; Abbott, Tyler A.; Griffiths, David J. (1984). Swinging Atwood's Machine. American Journal of Physics. 52 (10): 895--903.",
         "correlation_dimension": 1.8299454879703774,
         "delay": false,
-        "description": "A mechanical system consisting of two swinging weights connected by ropes and pulleys. This is only chaotic when m2 is sufficiently larger than m1, and there are nonzero initial momenta",
-        "dt": 6.836433523233154e-05,
+        "description": "A mechanical system consisting of two swinging weights connected by ropes and pulleys. This is cnly chaotic when m2 is sufficiently larger than m1, and there are nonzero initial momenta",
+        "dt": 0.00010288,
         "embedding_dimension": 4,
         "hamiltonian": true,
         "initial_conditions": [
@@ -4432,7 +4311,7 @@
             -3.002075505122432,
             -7.664246463289054
         ],
-        "maximum_lyapunov_estimated": 1.0111284961954359,
+        "maximum_lyapunov_estimated": 7.735006558021491,
         "nonautonomous": false,
         "parameters": {
             "m1": 1.0,
@@ -4448,7 +4327,7 @@
         "correlation_dimension": 1.6488268116215494,
         "delay": false,
         "description": "A cyclically-symmetric attractor correspondng to a frictionally-damped particle traversing a 3D lattice of forces",
-        "dt": 0.0009939656609435589,
+        "dt": 0.0002882,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4462,7 +4341,7 @@
             0.057355308262307496,
             -6.421950974462397
         ],
-        "maximum_lyapunov_estimated": 0.6324054000339867,
+        "maximum_lyapunov_estimated": 0.7589685797630259,
         "multiscale_entropy": 0.9921951854111759,
         "nonautonomous": false,
         "parameters": {
@@ -4479,7 +4358,7 @@
         "correlation_dimension": 2.150032278884401,
         "delay": false,
         "description": "A system in which trajectories seemingly undergo Brownian motion on an infinite lattice, but remain bounded when the parameter a is less than one.",
-        "dt": 0.0012102017002834486,
+        "dt": 0.0003509,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4493,7 +4372,7 @@
             0.004970451463443095,
             -2.8467429841890293
         ],
-        "maximum_lyapunov_estimated": 1.390858033637042,
+        "maximum_lyapunov_estimated": 1.338784931894327,
         "multiscale_entropy": 1.3049872431864915,
         "nonautonomous": false,
         "parameters": {
@@ -4510,7 +4389,7 @@
         "correlation_dimension": 1.0422059009112339,
         "delay": false,
         "description": "A minimal quasiperiodic flow on a torus. All lyapunov exponents and related quantities are zero",
-        "dt": 0.0012722120353390665,
+        "dt": 0.0003816,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4524,7 +4403,7 @@
             0.0,
             0.0
         ],
-        "maximum_lyapunov_estimated": 0.00817284128815307,
+        "maximum_lyapunov_estimated": 0.0,
         "multiscale_entropy": 0.47330913201518593,
         "nonautonomous": false,
         "parameters": {
@@ -4542,7 +4421,7 @@
         "correlation_dimension": 1.4738205303007272,
         "delay": false,
         "description": "A named attractor related to the DequanLi attractor",
-        "dt": 6.906351058511007e-05,
+        "dt": 3.936e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4556,7 +4435,7 @@
             -0.22409536897391863,
             -1.3233103558456687
         ],
-        "maximum_lyapunov_estimated": 0.13621488344499086,
+        "maximum_lyapunov_estimated": 0.6414001783252772,
         "multiscale_entropy": 0.3913632586715302,
         "nonautonomous": false,
         "parameters": {
@@ -4577,7 +4456,7 @@
         "correlation_dimension": 1.6209562623031344,
         "delay": false,
         "description": " A chaotic three species food web. The species growth rate has been increased from the default parameters in the original paper, in order to ensure that the system exhibits sustained chaotic oscillations.",
-        "dt": 0.0008812056911446575,
+        "dt": 0.0004074,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4591,7 +4470,7 @@
             -0.181183885924572,
             -2.522759887828014
         ],
-        "maximum_lyapunov_estimated": 0.12906862565697674,
+        "maximum_lyapunov_estimated": 0.03719830596656144,
         "multiscale_entropy": 0.4989636261373046,
         "nonautonomous": true,
         "parameters": {
@@ -4615,7 +4494,7 @@
         "correlation_dimension": 1.3112426349362432,
         "delay": false,
         "description": "Atmospheric temperature fluctuations with annual forcing.",
-        "dt": 0.00044181363560596765,
+        "dt": 0.0003048,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4629,7 +4508,7 @@
             0.022689184568283626,
             -5.6332694618503885
         ],
-        "maximum_lyapunov_estimated": 0.5477586276153029,
+        "maximum_lyapunov_estimated": 0.6561566154431996,
         "multiscale_entropy": 0.9058707360850027,
         "nonautonomous": false,
         "parameters": {
@@ -4647,7 +4526,7 @@
         "correlation_dimension": 0.3215769338785323,
         "delay": true,
         "description": "An electronic circuit with delayed feedback. A standard delay dimension of three is used.",
-        "dt": 0.0053123603161361645,
+        "dt": 0.01215,
         "embedding_dimension": 10,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4675,13 +4554,13 @@
             -0.019016383554425968,
             -9.625045518169777
         ],
-        "maximum_lyapunov_estimated": 0.017260872874199203,
+        "maximum_lyapunov_estimated": 0.029847825391001673,
         "nonautonomous": false,
         "parameters": {
             "alpha": 3.24,
             "tau": 13.28
         },
-        "period": 26.57243055290214,
+        "period": 23.16075,
         "pesin_entropy": 0.040600955873224424,
         "unbounded_indices": []
     },
@@ -4691,7 +4570,7 @@
         "correlation_dimension": 1.7810104871604908,
         "delay": false,
         "description": "A four-scroll attractor",
-        "dt": 0.005392498749791912,
+        "dt": 0.001294,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4705,7 +4584,7 @@
             -0.001043918775422804,
             -1.3240808432405
         ],
-        "maximum_lyapunov_estimated": 0.06735463002480017,
+        "maximum_lyapunov_estimated": 0.07990874520682273,
         "multiscale_entropy": 0.9045422097501858,
         "nonautonomous": false,
         "parameters": {
@@ -4726,7 +4605,7 @@
         "correlation_dimension": 0.9743571353772181,
         "delay": false,
         "description": "Energy transfer into the ionosphere and magnetosphere by the solar wind. The parameter vsw controls the onset of chaos.",
-        "dt": 0.0009348158026337216,
+        "dt": 0.000944,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4740,7 +4619,7 @@
             9.695760899839663e-05,
             -1.6450480911820564
         ],
-        "maximum_lyapunov_estimated": 0.403521000622694,
+        "maximum_lyapunov_estimated": 0.15595238514031914,
         "multiscale_entropy": 0.5896070173085494,
         "nonautonomous": false,
         "parameters": {
@@ -4761,7 +4640,7 @@
         "correlation_dimension": 1.8558772226523095,
         "delay": false,
         "description": "A temperature-compensation circuit with an operational amplifier",
-        "dt": 0.00026736456076008607,
+        "dt": 9.089e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4775,7 +4654,7 @@
             -0.07297917814211805,
             -14.00993065520751
         ],
-        "maximum_lyapunov_estimated": 1.8525516537708415,
+        "maximum_lyapunov_estimated": 2.459880656234634,
         "multiscale_entropy": 0.6340382196367295,
         "nonautonomous": false,
         "parameters": {
@@ -4794,7 +4673,7 @@
         "correlation_dimension": 1.5232465346725725,
         "delay": false,
         "description": "An alternative temperature-compensation circuit with an operational amplifier",
-        "dt": 7.854309051509745e-05,
+        "dt": 0.0001068,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4808,7 +4687,7 @@
             0.007966964664720393,
             -13.078014115524866
         ],
-        "maximum_lyapunov_estimated": 1.1576066800869989,
+        "maximum_lyapunov_estimated": 0.802715215563475,
         "multiscale_entropy": 0.9335570471768684,
         "nonautonomous": false,
         "parameters": {
@@ -4827,7 +4706,7 @@
         "correlation_dimension": 1.6212203970681585,
         "delay": false,
         "description": "A feedback circuit model.",
-        "dt": 0.00017506517752959638,
+        "dt": 4.901e-05,
         "embedding_dimension": 3,
         "hamiltonian": false,
         "initial_conditions": [
@@ -4841,7 +4720,7 @@
             0.005203946388490041,
             -12.999237688229242
         ],
-        "maximum_lyapunov_estimated": 0.6828000288089435,
+        "maximum_lyapunov_estimated": 0.5917259125455694,
         "multiscale_entropy": 0.7337896982114851,
         "nonautonomous": false,
         "parameters": {

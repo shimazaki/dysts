@@ -1,16 +1,19 @@
 """
-Helper utilities for working with time series arrays. This module is intended to have no
-dependencies on the rest of the package.
+Helper utilities for working with time series arrays.
+This module is intended to have no dependencies on the rest of
+the package
+
 """
 import numpy as np
-from numpy.fft import rfft
+from numpy.fft import rfft, irfft
 
 import warnings
-from scipy.integrate import solve_ivp
-from scipy.signal import resample, periodogram
-from scipy.signal.windows import blackmanharris
+from scipy.integrate import odeint, solve_ivp
+from scipy.signal import blackmanharris, fftconvolve, resample, periodogram
 from collections import deque
 from functools import partial
+
+import json
 
 try:
     from sdeint import itoint
@@ -53,59 +56,6 @@ def dict_loudassign(d, key, val):
     print(key + ": " + str(val), flush=True)
     d[key] = val
     return d
-
-def nested_dict_invert(ndict, levels=(0,1)):
-    """
-    Invert a nested dictionary.
-    
-    Args:
-        ndict (dict): The nested dictionary to invert.
-        levels (tuple): The levels of the nested dictionary to invert. Not Implemented.
-
-    Returns:
-        inverted (dict): The inverted dictionary.
-    """
-    inverted = dict()
-    for key1 in ndict:
-        for key2 in ndict[key1]:
-            if key2 not in inverted:
-                inverted[key2] = dict()
-            inverted[key2][key1] = ndict[key1][key2]
-    return inverted
-
-def nanmean_trimmed(arr, percentile=0.5, axis=None):
-    """
-    Compute the trimmed mean of an array along a specified axis, ignoring NaNs.
-
-    Args:
-        arr (np.array): Input array
-        percentile (float): The fraction of data to be trimmed. Should be between 0 and
-            1. Default is 0.5.
-        axis (int): Axis along which to compute the trimmed mean. If None (the default),
-            compute over the whole array.
-    Returns:
-        Trimmed mean of the input array along the specified axis.
-    """
-    if axis is None:
-        arr = arr.ravel()
-        axis = 0
-    
-    if not 0 <= percentile <= 1:
-        raise ValueError("percentile must be between 0 and 1")
-    
-    # Calculate the indices corresponding to the trimming percentage
-    n = arr.shape[axis]
-    lower = int(n * percentile / 2)
-    upper = n - lower
-    
-    # Sort the array along the specified axis, ignoring NaNs
-    sorted_arr = np.partition(arr, (lower, upper), axis=axis)
-    sorted_slice = [slice(None)] * arr.ndim
-    sorted_slice[axis] = slice(lower, upper)
-    sorted_arr = sorted_arr[sorted_slice]
-    
-    # Calculate the mean along the specified axis, ignoring NaNs
-    return np.nanmean(sorted_arr, axis=axis)
 
 def standardize_ts(a, scale=1.0):
     """Standardize an array along dimension -2
@@ -262,6 +212,9 @@ def find_characteristic_timescale(y, k=1, window=True):
     y = gaussian_filter1d(y, 3)
 
     fvals, psd = find_psd(y, window=window)
+    # y = y * blackmanharris(len(y))
+    # halflen = int(len(y)/2)
+    # fvals, psd = periodogram(y, fs=1)
     max_indices = np.argsort(psd)[::-1]
     
     # Merge adjacent peaks
@@ -440,7 +393,7 @@ def find_significant_frequencies(sig, window=True, fs=1, n_samples=100,
     if window:
         sig = sig * blackmanharris(n)
     
-    psd_sig = np.abs(rfft(sig))**2
+    psd_sig = rfft(sig)
     
     all_surr_psd = list()
     for i in range(n_samples):
@@ -449,7 +402,7 @@ def find_significant_frequencies(sig, window=True, fs=1, n_samples=100,
         #np.random.shuffle(surr)
         if window:
             surr = surr * blackmanharris(len(surr))
-            psd_surr = np.abs(rfft(surr))**2
+            psd_surr = rfft(surr)
         all_surr_psd.append(psd_surr)
     all_surr_psd = np.array(all_surr_psd)
 
@@ -581,6 +534,7 @@ def find_slope(x, y):
     b /= n * (x * x).sum(axis=-1) - x.sum(axis=-1) * x.sum(axis=-1)
     return b
 
+    
 
 def make_epsilon_ball(pt, n, eps=1e-5, random_state=None):
     """
@@ -605,55 +559,3 @@ def make_epsilon_ball(pt, n, eps=1e-5, random_state=None):
     coords = r * vecs / norm
     out = pt[:, None] + eps * coords
     return out
-
-import threading
-class ComputationHolder:
-    """
-    A wrapper class to force a computation to stop after a timeout.
-
-    Parameters
-        func (callable): the function to run
-        args (tuple): the arguments to pass to the function
-        kwargs (dict): the keyword arguments to pass to the function
-        timeout (int): the timeout in seconds. If None is passed, the computation
-            will run indefinitely until it finishes.
-
-    Example
-        >>> def my_func():
-        ...     while True:
-        ...         print("hello")
-        ...         time.sleep(8)
-        >>> ch = ComputationHolder(my_func, timeout=3)
-        >>> ch.run()
-        hello
-        hello
-        hello
-        None
-
-    """
-
-    def __init__(self, func=None, *args, timeout=10, **kwargs):
-        self.sol = None
-        self.func = func
-        self.args = args
-        self.kwargs = kwargs
-        self.timeout = timeout
-
-        def func_wrapped():
-            self.sol = self.func(*self.args, **self.kwargs)
-
-        self.func_wrapped = func_wrapped
-
-    def run(self):
-        my_thread = threading.Thread(
-            target=self.func_wrapped
-        )
-        my_thread.start()
-        my_thread.join(self.timeout) # kill the thread after `timeout` seconds
-
-        if self.sol is None:
-            return None
-        else:
-            return self.sol
-        
-        

@@ -14,13 +14,187 @@ the creators of nolds, and please heed their license.
 import numpy as np
 import warnings
 
+def rowwise_chebyshev(x, y):
+    return np.max(np.abs(x - y), axis=1)
+
 def rowwise_euclidean(x, y):
     """Computes the euclidean distance across rows"""
     return np.sqrt(np.sum((x - y)**2, axis=1))
 
-def corr_dim(*args, **kwargs):
-    raise NotImplementedError("corr_dim has been removed from the library." + \
-                              "Please use dysts.analysis.gp_dim instead.")
+def logarithmic_r(min_n, max_n, factor):
+    """
+    Adapted from the nolds Python library:
+    https://github.com/CSchoel/nolds/blob/master/nolds/measures.py
+
+    Creates a list of values by successively multiplying a minimum value min_n by
+    a factor > 1 until a maximum value max_n is reached.
+    Args:
+    min_n (float):
+      minimum value (must be < max_n)
+    max_n (float):
+      maximum value (must be > min_n)
+    factor (float):
+      factor used to increase min_n (must be > 1)
+    Returns:
+    list of floats:
+      min_n, min_n * factor, min_n * factor^2, ... min_n * factor^i < max_n
+    """
+    assert max_n > min_n
+    assert factor > 1
+    max_i = int(np.floor(np.log(1.0 * max_n / min_n) / np.log(factor)))
+    return [min_n * (factor ** i) for i in range(max_i + 1)]
+
+def poly_fit(x, y, degree, fit="RANSAC"):
+    """
+    Adapted from the nolds Python library:
+    https://github.com/CSchoel/nolds/blob/master/nolds/measures.py
+
+    Check if we can use RANSAC
+
+    """
+    if fit == "RANSAC":
+        try:
+            # ignore ImportWarnings in sklearn
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", ImportWarning)
+                import sklearn.linear_model as sklin
+                import sklearn.preprocessing as skpre
+        except ImportError:
+            warnings.warn(
+                "fitting mode 'RANSAC' requires the package sklearn, using"
+                + " 'poly' instead",
+                RuntimeWarning)
+            fit = "poly"
+
+    if fit == "poly":
+        return np.polyfit(x, y, degree)
+    elif fit == "RANSAC":
+        model = sklin.RANSACRegressor(sklin.LinearRegression(fit_intercept=False))
+        xdat = np.asarray(x)
+        if len(xdat.shape) == 1:
+            # interpret 1d-array as list of len(x) samples instead of
+            # one sample of length len(x)
+            xdat = xdat.reshape(-1, 1)
+        polydat = skpre.PolynomialFeatures(degree).fit_transform(xdat)
+        try:
+            model.fit(polydat, y)
+            coef = model.estimator_.coef_[::-1]
+        except ValueError:
+            warnings.warn(
+                "RANSAC did not reach consensus, "
+                + "using numpy's polyfit",
+                RuntimeWarning)
+            coef = np.polyfit(x, y, degree)
+        return coef
+    else:
+        raise ValueError("invalid fitting mode ({})".format(fit))
+
+def corr_dim(data, rvals=None, dist=rowwise_euclidean,
+                    fit="RANSAC", debug_plot=False, debug_data=False, plot_file=None):
+    """
+    Adapted from the nolds Python library:
+    https://github.com/CSchoel/nolds/blob/master/nolds/measures.py
+
+    Calculates the correlation dimension with the Grassberger-Procaccia algorithm
+    Explanation of correlation dimension:
+        The correlation dimension is a characteristic measure that can be used
+        to describe the geometry of chaotic attractors. It is defined using the
+        correlation sum C(r) which is the fraction of pairs of points X_i in the
+        phase space whose distance is smaller than r.
+        If the relation between C(r) and r can be described by the power law
+        C(r) ~ r^D
+        then D is called the correlation dimension of the system.
+        In a d-dimensional system, the maximum value for D is d. This value is
+        obtained for systems that expand uniformly in each dimension with time.
+        The lowest possible value is 0 for a system with constant C(r) (i.e. a
+        system that visits just one point in the phase space). Generally if D is
+        lower than d and the system has an attractor, this attractor is called
+        "strange" and D is a measure of this "strangeness".
+    Explanation of the algorithm:
+        The Grassberger-Procaccia algorithm calculates C(r) for a range of
+        different r and then fits a straight line into the plot of log(C(r))
+        versus log(r).
+    References:
+        .. [cd_1] P. Grassberger and I. Procaccia, “Characterization of strange
+                            attractors,” Physical review letters, vol. 50, no. 5, p. 346,
+                            1983.
+        .. [cd_2] P. Grassberger and I. Procaccia, “Measuring the strangeness of
+                            strange attractors,” Physica D: Nonlinear Phenomena, vol. 9,
+                            no. 1, pp. 189–208, 1983.
+        .. [cd_3] P. Grassberger, “Grassberger-Procaccia algorithm,”
+                            Scholarpedia, vol. 2, no. 5, p. 3043.
+                            urL: http://www.scholarpedia.org/article/Grassberger-Procaccia_algorithm
+    Reference Code:
+        .. [cd_a] "corrDim" function in R package "fractal",
+                            url: https://cran.r-project.org/web/packages/fractal/fractal.pdf
+        .. [cd_b] Peng Yuehua, "Correlation dimension",
+                            url: http://de.mathworks.com/matlabcentral/fileexchange/24089-correlation-dimension
+    Args:
+        data (array-like of float):
+            time series of data points
+        emb_dim (int):
+            embedding dimension
+    Kwargs:
+        rvals (iterable of float):
+            list of values for to use for r
+            (default: logarithmic_r(0.1 * std, 0.5 * std, 1.03))
+        dist (function (2d-array, 1d-array) -> 1d-array):
+            row-wise difference function
+        fit (str):
+            the fitting method to use for the line fit, either 'poly' for normal
+            least squares polynomial fitting or 'RANSAC' for RANSAC-fitting which
+            is more robust to outliers
+        debug_plot (boolean):
+            if True, a simple plot of the final line-fitting step will be shown
+        debug_data (boolean):
+            if True, debugging data will be returned alongside the result
+        plot_file (str):
+            if debug_plot is True and plot_file is not None, the plot will be saved
+            under the given file name instead of directly showing it through
+            ``plt.show()``
+    Returns:
+        float:
+            correlation dimension as slope of the line fitted to log(r) vs log(C(r))
+        (1d-vector, 1d-vector, list):
+            only present if debug_data is True: debug data of the form
+            ``(rvals, csums, poly)`` where ``rvals`` are the values used for log(r), 
+            ``csums`` are the corresponding log(C(r)) and ``poly`` are the line 
+            coefficients (``[slope, intercept]``)
+    """
+    data = np.asarray(data)
+
+    # TODO what are good values for r?
+    # TODO do this for multiple values of emb_dim?
+    if rvals is None:
+        sd = np.std(data)
+        rvals = logarithmic_r(0.1 * sd, 0.5 * sd, 1.03)
+    n = len(data)
+    #orbit = delay_embedding(data, emb_dim, lag=1)
+    orbit = data
+    dists = np.array([dist(orbit, orbit[i]) for i in range(len(orbit))])
+    csums = []
+    for r in rvals:
+        s = 1.0 / (n * (n - 1)) * np.sum(dists < r)
+        csums.append(s)
+    csums = np.array(csums)
+    # filter zeros from csums
+    nonzero = np.where(csums != 0)
+    rvals = np.array(rvals)[nonzero]
+    csums = csums[nonzero]
+    if len(csums) == 0:
+        # all sums are zero => we cannot fit a line
+        poly = [np.nan, np.nan]
+    else:
+        poly = poly_fit(np.log(rvals), np.log(csums), 1, fit=fit)
+    if debug_plot:
+        plot_reg(np.log(rvals), np.log(csums), poly, "log(r)", "log(C(r))",
+                         fname=plot_file)
+    if debug_data:
+        return (poly[0], (np.log(rvals), np.log(csums), poly))
+    else:
+        return poly[0]
+
+
 
 def lyap_r_len(**kwargs):
     """
@@ -478,8 +652,335 @@ def dfa(data, nvals=None, overlap=True, order=1, fit_trend="poly",
         return (poly[0], (np.log(nvals), np.log(fluctuations), poly))
     else:
         return poly[0]
+    
+def dimension_difference(a1, a2):
+    """
+    Compare the dimensionality of two time series
+    """
+    d_true = a1.shape[0]
+    #print(d_true)
+    r = np.mean(a2**2, axis=0) # energy
+    plt.plot(r)
+    d_pred = 1 + np.where(np.abs(np.diff(r))<1e-2)[0][0]
+    
+    return d_pred - d_true
 
+def standardize_scale(a, scale=1.0):
+    """
+    Standardize an array
+    scale : float
+        The number of standard deviations
+    """
+    return (a - np.mean(a))/(scale*np.std(a))
 
-def lyap_e(*args, **kwargs):
-    raise NotImplementedError("lyap_e has been removed from the library." + \
-                              "Please use dysts.analysis.find_lyapunov_exponents instead.")
+def lyap_e_len(**kwargs):
+    """
+    Helper function that calculates the minimum number of data points required
+    to use lyap_e.
+    Note that none of the required parameters may be set to None.
+    Kwargs:
+        kwargs(dict):
+            arguments used for lyap_e (required: emb_dim, matrix_dim, min_nb
+            and min_tsep)
+    Returns:
+        minimum number of data points required to call lyap_e with the given
+        parameters
+    """
+    m = (kwargs['emb_dim'] - 1) // (kwargs['matrix_dim'] - 1)
+    # minimum length required to find single orbit vector
+    min_len = kwargs['emb_dim']
+    # we need to follow each starting point of an orbit vector for m more steps
+    min_len += m
+    # we need min_tsep * 2 + 1 orbit vectors to find neighbors for each
+    min_len += kwargs['min_tsep'] * 2
+    # we need at least min_nb neighbors for each orbit vector
+    min_len += kwargs['min_nb']
+    return min_len
+
+def lyap_e(data, emb_dim=10, matrix_dim=4, min_nb=None, min_tsep=0, tau=1,
+                     debug_plot=False, debug_data=False, plot_file=None):
+    """
+    Estimates the Lyapunov exponents for the given data using the algorithm of
+    Eckmann et al. [le_1]_.
+    Recommendations for parameter settings by Eckmann et al.:
+        * long recording time improves accuracy, small tau does not
+        * use large values for emb_dim
+        * matrix_dim should be 'somewhat larger than the expected number of
+            positive Lyapunov exponents'
+        * min_nb = min(2 * matrix_dim, matrix_dim + 4)
+    Explanation of Lyapunov exponents:
+        The Lyapunov exponent describes the rate of separation of two
+        infinitesimally close trajectories of a dynamical system in phase space.
+        In a chaotic system, these trajectories diverge exponentially following
+        the equation:
+        \|X(t, X_0) - X(t, X_0 + eps)| = e^(lambda * t) * \|eps|
+        In this equation X(t, X_0) is the trajectory of the system X starting at
+        the point X_0 in phase space at time t. eps is the (infinitesimal)
+        difference vector and lambda is called the Lyapunov exponent. If the
+        system has more than one free variable, the phase space is
+        multidimensional and each dimension has its own Lyapunov exponent. The
+        existence of at least one positive Lyapunov exponent is generally seen as
+        a strong indicator for chaos.
+    Explanation of the Algorithm:
+        To calculate the Lyapunov exponents analytically, the Jacobian of the
+        system is required. The algorithm of Eckmann et al. therefore tries to
+        estimate this Jacobian by reconstructing the dynamics of the system from
+        which the time series was obtained. For this, several steps are required:
+        * Embed the time series [x_1, x_2, ..., x_(N-1)] in an orbit of emb_dim
+            dimensions (map each point x_i of the time series to a vector
+            [x_i, x_(i+1), x_(i+2), ... x_(i+emb_dim-1)]).
+        * For each vector X_i in this orbit find a radius r_i so that at least
+            min_nb other vectors lie within (chebyshev-)distance r_i around X_i.
+            These vectors will be called "neighbors" of X_i.
+        * Find the Matrix T_i that sends points from the neighborhood of X_i to
+            the neighborhood of X_(i+1). To avoid undetermined values in T_i, we
+            construct T_i not with size (emb_dim x emb_dim) but with size
+            (matrix_dim x matrix_dim), so that we have a larger "step size" m in the
+            X_i, which are now defined as X'_i = [x_i, x_(i+m), x_(i+2m),
+            ... x_(i+(matrix_dim-1)*m)]. This means that emb_dim-1 must be divisible
+            by matrix_dim-1. The T_i are then found by a linear least squares fit,
+            assuring that T_i (X_j - X_i) ~= X_(j+m) - X_(i+m) for any X_j in the
+            neighborhood of X_i.
+        * Starting with i = 1 and Q_0 = identity successively decompose the matrix
+            T_i * Q_(i-1) into the matrices Q_i and R_i by a QR-decomposition.
+        * Calculate the Lyapunov exponents from the mean of the logarithm of the
+            diagonal elements of the matrices R_i. To normalize the Lyapunov
+            exponents, they have to be divided by m and by the step size tau of the
+            original time series.
+    References:
+        .. [le_1] J. P. Eckmann, S. O. Kamphorst, D. Ruelle, and S. Ciliberto,
+             “Liapunov exponents from time series,” Physical Review A,
+             vol. 34, no. 6, pp. 4971–4979, 1986.
+    Reference code:
+        .. [le_a] Manfred Füllsack, "Lyapunov exponent",
+             url: http://systems-sciences.uni-graz.at/etextbook/sw2/lyapunov.html
+        .. [le_b] Steve SIU, Lyapunov Exponents Toolbox (LET),
+             url: http://www.mathworks.com/matlabcentral/fileexchange/233-let/content/LET/findlyap.m
+        .. [le_c] Rainer Hegger, Holger Kantz, and Thomas Schreiber, TISEAN,
+             url: http://www.mpipks-dresden.mpg.de/~tisean/Tisean_3.0.1/index.html
+    Args:
+        data (array-like of float):
+            (scalar) data points
+    Kwargs:
+        emb_dim (int):
+            embedding dimension
+        matrix_dim (int):
+            matrix dimension (emb_dim - 1 must be divisible by matrix_dim - 1)
+        min_nb (int):
+            minimal number of neighbors
+            (default: min(2 * matrix_dim, matrix_dim + 4))
+        min_tsep (int):
+            minimal temporal separation between two "neighbors"
+        tau (float):
+            step size of the data in seconds
+            (normalization scaling factor for exponents)
+        debug_plot (boolean):
+            if True, a histogram matrix of the individual estimates will be shown
+        debug_data (boolean):
+            if True, debugging data will be returned alongside the result
+        plot_file (str):
+            if debug_plot is True and plot_file is not None, the plot will be saved
+            under the given file name instead of directly showing it through
+            ``plt.show()``
+    Returns:
+        float array:
+            array of matrix_dim Lyapunov exponents (positive exponents are indicators
+            for chaos)
+        2d-array of floats:
+            only present if debug_data is True: all estimates for the matrix_dim
+            Lyapunov exponents from the x iterations of R_i. The shape of this debug
+            data is (x, matrix_dim).
+    """
+    data = np.asarray(data)
+    emb_dim = data.shape[-1]
+    n = len(data)
+
+    matrix_dim = emb_dim
+    if (emb_dim - 1) % (matrix_dim - 1) != 0:
+        raise ValueError("emb_dim - 1 must be divisible by matrix_dim - 1!")
+    
+    m = (emb_dim - 1) // (matrix_dim - 1)
+    if min_nb is None:
+        # minimal number of neighbors as suggested by Eckmann et al.
+        min_nb = min(2 * matrix_dim, matrix_dim + 4)
+
+    min_len = lyap_e_len(
+        emb_dim=emb_dim, matrix_dim=matrix_dim, min_nb=min_nb, min_tsep=min_tsep
+    )
+    print(min_len)
+    if n < min_len:
+        msg = "{} data points are not enough! For emb_dim = {}, matrix_dim = {}, " \
+            + "min_tsep = {} and min_nb = {} you need at least {} data points " \
+            + "in your time series"
+        warnings.warn(
+            msg.format(n, emb_dim, matrix_dim, min_tsep, min_nb, min_len),
+            RuntimeWarning
+        )
+
+    # construct orbit as matrix (e = emb_dim)
+    # x0 x1 x2 ... xe-1
+    # x1 x2 x3 ... xe
+    # x2 x3 x4 ... xe+1
+    # ...
+
+    # note: we need to be able to step m points further for the beta vector
+    #             => maximum start index is n - emb_dim - m
+#     orbit = delay_embedding(data[:-m], emb_dim, lag=1)
+    
+    orbit = data
+    if len(orbit) < min_nb:
+        print(len(data), "t", min_len)
+        assert len(data) < min_len
+        msg = "Not enough data points. Need at least {} additional data points " \
+                + "to have min_nb = {} neighbor candidates"
+        raise ValueError(msg.format(min_nb-len(orbit), min_nb))
+    old_Q = np.identity(matrix_dim)
+    lexp = np.zeros(matrix_dim, dtype="float32")
+    lexp_counts = np.zeros(lexp.shape)
+    debug_values = []
+    # TODO reduce number of points to visit?
+    # TODO performance test!
+    for i in range(len(orbit)):
+        # find neighbors for each vector in the orbit using the chebyshev distance
+        diffs = rowwise_chebyshev(orbit, orbit[i])
+        # ensure that we do not count the difference of the vector to itself
+        diffs[i] = float('inf')
+        # mask all neighbors that are too close in time to the vector itself
+        mask_from = max(0, i - min_tsep)
+        mask_to = min(len(diffs), i + min_tsep + 1)
+        diffs[mask_from:mask_to] = np.inf
+        indices = np.argsort(diffs)
+        idx = indices[min_nb - 1]    # index of the min_nb-nearest neighbor
+        r = diffs[idx]    # corresponding distance
+        if np.isinf(r):
+            assert len(data) < min_len
+            msg = "Not enough data points. Orbit vector {} has less than min_nb = " \
+                    + "{} valid neighbors that are at least min_tsep = {} time steps " \
+                    + "away. Input must have at least length {}."
+            raise ValueError(msg.format(i, min_nb, min_tsep, min_len))
+        # there may be more than min_nb vectors at distance r (if multiple vectors
+        # have a distance of exactly r)
+        # => update index accordingly
+        indices = np.where(diffs <= r)[0]
+#         print(indices)
+        
+#         print(max(np.max(indices), i) + matrix_dim * m >= len(data))
+        
+#         print("indices", indices.shape)
+
+        # find the matrix T_i that satisifies
+        # T_i (orbit'[j] - orbit'[i]) = (orbit'[j+m] - orbit'[i+m])
+        # for all neighbors j where orbit'[i] = [x[i], x[i+m],
+        # ... x[i + (matrix_dim-1)*m]]
+
+        # note that T_i has the following form:
+        # 0    1    0    ... 0
+        # 0    0    1    ... 0
+        # ...
+        # a0 a1 a2 ... a(matrix_dim-1)
+
+        # This is because for all rows except the last one the aforementioned
+        # equation has a clear solution since orbit'[j+m] - orbit'[i+m] =
+        # [x[j+m]-x[i+m], x[j+2*m]-x[i+2*m], ... x[j+d_M*m]-x[i+d_M*m]]
+        # and
+        # orbit'[j] - orbit'[i] =
+        # [x[j]-x[i], x[j+m]-x[i+m], ... x[j+(d_M-1)*m]-x[i+(d_M-1)*m]]
+        # therefore x[j+k*m] - x[i+k*m] is already contained in
+        # orbit'[j] - orbit'[x] for all k from 1 to matrix_dim-1. Only for
+        # k = matrix_dim there is an actual problem to solve.
+
+        # We can therefore find a = [a0, a1, a2, ... a(matrix_dim-1)] by
+        # formulating a linear least squares problem (mat_X * a = vec_beta)
+        # as follows.
+
+        # build matrix X for linear least squares (d_M = matrix_dim)
+        # x_j1 - x_i     x_j1+m - x_i+m     ...     x_j1+(d_M-1)m - x_i+(d_M-1)m
+        # x_j2 - x_i     x_j2+m - x_i+m     ...     x_j2+(d_M-1)m - x_i+(d_M-1)m
+        # ...
+
+        # note: emb_dim = (d_M - 1) * m + 1
+
+        mat_X = np.array([data[j] for j in indices])
+        mat_X -= data[i]
+        # build vector beta for linear least squares
+        # x_j1+(d_M)m - x_i+(d_M)m
+        # x_j2+(d_M)m - x_i+(d_M)m
+        # ...
+
+        if max(np.max(indices),i) + matrix_dim * m >= len(data):
+#             print("t")
+#             print(np.max(indices), i, matrix_dim, m, "L", len(data))
+            continue
+            
+#             assert len(data) < min_len
+#             msg = "Not enough data points. Cannot follow orbit vector {} for " \
+#                     + "{} (matrix_dim * m) time steps. Input must have at least length " \
+#                     + "{}."
+#             raise ValueError(msg.format(i, matrix_dim * m, min_len))
+        
+        vec_beta = np.sum(data[indices + matrix_dim * m] - data[i + matrix_dim * m], axis=-1)
+        # perform linear least squares
+        a, _, _, _ = np.linalg.lstsq(mat_X, vec_beta, rcond=-1)
+        
+        a, _, _, _ = np.linalg.lstsq(data[indices] - data[i], data[indices + m] - data[i + m], rcond=-1)
+        
+#         all_vec_beta = (data[indices + matrix_dim * m] - data[i + matrix_dim * m]).T
+#         all_a = list()
+#         for item in all_vec_beta:
+#             # perform linear least squares
+#             a, _, _, _ = np.linalg.lstsq(mat_X, vec_beta, rcond=-1)
+#             all_a.append(a)
+            
+#         print(all_a)
+#         a = np.mean(all_a)        
+
+        # build matrix T
+        # 0    1    0    ... 0
+        # 0    0    1    ... 0
+        # ...
+        # 0    0    0    ... 1
+        # a1 a2 a3 ... a_(d_M)
+#         mat_T = np.zeros((matrix_dim, matrix_dim))
+#         mat_T[:-1, 1:] = np.identity(matrix_dim - 1)
+#         mat_T[-1] = a
+        
+        mat_T = a
+
+        # QR-decomposition of T * old_Q
+        mat_Q, mat_R = np.linalg.qr(np.dot(mat_T, old_Q))
+        # force diagonal of R to be positive
+        # (if QR = A then also QLL'R = A with L' = L^-1)
+        sign_diag = np.sign(np.diag(mat_R))
+        sign_diag[np.where(sign_diag == 0)] = 1
+        sign_diag = np.diag(sign_diag)
+        mat_Q = np.dot(mat_Q, sign_diag)
+        mat_R = np.dot(sign_diag, mat_R)
+
+        old_Q = mat_Q
+        # successively build sum for Lyapunov exponents
+        diag_R = np.diag(mat_R)
+        # filter zeros in mat_R (would lead to -infs)
+        idx = np.where(diag_R > 0)
+        lexp_i = np.zeros(diag_R.shape, dtype="float32")
+        lexp_i[idx] = np.log(diag_R[idx])
+        lexp_i[np.where(diag_R == 0)] = np.inf
+        if debug_plot or debug_data:
+            debug_values.append(lexp_i / tau / m)
+        lexp[idx] += lexp_i[idx]
+        lexp_counts[idx] += 1
+    # end of loop over orbit vectors
+    # it may happen that all R-matrices contained zeros => exponent really has
+    # to be -inf
+    if debug_plot:
+        plot_histogram_matrix(np.array(debug_values), "layp_e", fname=plot_file)
+    # normalize exponents over number of individual mat_Rs
+    idx = np.where(lexp_counts > 0)
+    lexp[idx] /= lexp_counts[idx]
+    lexp[np.where(lexp_counts == 0)] = np.inf
+    # normalize with respect to tau
+    lexp /= tau
+    # take m into account
+    lexp /= m
+    if debug_data:
+        return (lexp, np.array(debug_values))
+    return lexp

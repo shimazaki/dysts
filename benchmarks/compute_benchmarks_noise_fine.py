@@ -4,27 +4,16 @@ import sys
 import os
 import json
 
-# HS using local dysts
-sys.path.append(os.path.join(os.path.dirname(__file__),'../../dysts/'))
 import dysts
 from dysts.datasets import *
 
 import pandas as pd
 import numpy as np
-np.random.seed(0)
 
-# import darts
-# from darts.models import *
-# from darts import TimeSeries
-# import darts.models
-
-# HS using local darts
-sys.path.append(os.path.join(os.path.dirname(__file__),'../../darts_old/'))
 import darts
 from darts.models import *
 from darts import TimeSeries
 import darts.models
-
 
 
 cwd = os.path.dirname(os.path.realpath(__file__))
@@ -33,18 +22,9 @@ input_path = os.path.dirname(cwd)  + "/dysts/data/test_univariate__pts_per_perio
 ## link to TEST data
 
 dataname = os.path.splitext(os.path.basename(os.path.split(input_path)[-1]))[0]
-output_path = cwd + "/results/240605_results_" + dataname + "_noise.json"
-#240605_results_ #for the third presentation Large noise 0.8 old hyperparam
-#240606_results_ #for the third presentation Large noise 0.2 old hyperparam
-
-#221025_results_ #for the third presentation Large noise 0.8
-#220812_results_ #for the third presentation Small noise 0.2
-#220428_results_ #for the second presentation
+output_path = cwd + "/results/results_" + dataname + "_noise.json"
 dataname = dataname.replace("test", "train" )
-hyperparameter_path = cwd + "/hyperparameters/220812_hyperparameters_" + dataname + ".json"
-#221025_results_ #for the third presentation Large noise 0.8
-#220812_results_ #for the third presentation Small noise 0.2
-#220428_hyperparameters_ #for the second presentation
+hyperparameter_path = cwd + "/hyperparameters/hyperparameters_" + dataname + ".json"
 
 metric_list = [
     'coefficient_of_variation',
@@ -72,22 +52,12 @@ except FileNotFoundError:
     all_results = dict()
     
 
-#for equation_name in list(equation_data.dataset.keys())[::-1]:
-for equation_name in list(equation_data.dataset.keys())[::+1]:
-    # The following models does not work in the existing models (e.g., ARIMA). Excluded.
-    if equation_name in ['GenesioTesi','Hadley','MacArthur','SprottD','StickSlipOscillator']:
-        continue
+for equation_name in list(equation_data.dataset.keys())[::-1]:
     
     train_data = np.copy(np.array(equation_data.dataset[equation_name]["values"]))
     noise_scale = np.std(train_data[:int(5/6 * len(train_data))]) # prevent leakage
+    train_data += 0.2 * np.std(train_data) * np.random.normal(size=train_data.shape[0])
     
-    #220812_results_ #for the third presentation Small noise 0.2
-    #train_data += 0.2 * np.std(train_data) * np.random.normal(size=train_data.shape[0])
-    
-    #221025_results_ #for the third presentation Large noise 0.8
-    #240605_results_ #for the third presentation Large noise 0.8
-    train_data += 0.8 * np.std(train_data) * np.random.normal(size=train_data.shape[0])
-
     if equation_name not in all_results.keys():
         all_results[equation_name] = dict()
     
@@ -98,17 +68,8 @@ for equation_name in list(equation_data.dataset.keys())[::+1]:
     all_results[equation_name]["values"] = np.squeeze(y_val)[:-1].tolist()
     
     for model_name in all_hyperparameters[equation_name].keys():
-        # if model_name in all_results[equation_name].keys():
-        #     #continue
-        #     if model_name == ['NLSS_Takens','LSS','LSS_Takens','NLSS','KalmanForecaster']:
-        #         print(f"{model_name} exists, but forced to re-fit")
-        #     else:
-        #         continue
-
-        # if model_name == "NLSS_Sampling": #"NLSS":
-        #     print(f"{model_name} exists in hyperparam search, but skips")
-        #     continue
-
+        if model_name in all_results[equation_name].keys():
+            continue
         all_results[equation_name][model_name] = dict()
         
         print(equation_name + " " + model_name, flush=True)
@@ -133,15 +94,10 @@ for equation_name in list(equation_data.dataset.keys())[::+1]:
         all_results[equation_name][model_name]["prediction"] = np.squeeze(y_val_pred.values()).tolist()
         
         for metric_name in metric_list:
-            print(metric_name)
-            
             metric_func = getattr(darts.metrics.metrics, metric_name)
-
-            print(metric_func(true_y, pred_y))
             all_results[equation_name][model_name][metric_name] = metric_func(true_y, pred_y)
         
         with open(output_path, 'w') as f:
-            print(f)
             json.dump(all_results, f, indent=4, sort_keys=True)   
         
 

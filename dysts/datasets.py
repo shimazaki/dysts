@@ -1,10 +1,10 @@
+import json
 import warnings
-import os, json, gzip
 import numpy as np
-import pandas as pd
+import os
 import pkg_resources
+import pandas as pd
 
-## Check for optional time series featurizer
 try:
     from tsfresh import extract_features
     from tsfresh import select_features
@@ -13,15 +13,6 @@ except ImportError:
     _has_tsfresh = False
 else:
     _has_tsfresh = True
-
-
-## Check for optional datasets
-try:
-    from dysts_data.dataloader import get_datapath
-except ImportError:
-    _has_data = False
-else:
-    _has_data = True
 
 from .utils import *
 
@@ -35,9 +26,7 @@ class TimeSeriesDataset:
     
     
     Args:
-        data (dict, optional): A time series dataset, consisting of a dictionary
-            with index given by top-level names of different time series.
-        datapath (string, optional): The path to a JSON dataset. Defaults to creating
+        datapath (string, optional): The path to the dataset. Defaults to creating
             an empty dataset object
     
     Attributes:
@@ -47,19 +36,12 @@ class TimeSeriesDataset:
     
     """
 
-    def __init__(self, datapath=None, data=None):
-        if datapath is not None:
-            ext = os.path.splitext(datapath)[1]
-            if ext == ".json":
-                with open(datapath, "r") as file:
-                    self.dataset = json.load(file)
-            elif ext == ".gz":
-                with gzip.open(datapath, 'rt', encoding="utf-8") as file:
-                    self.dataset = json.load(file)
-            else:
-                raise ValueError("Unrecognized file extension")
-        if data is not None:
-            self.dataset = data
+    def __init__(self, datapath=None):
+        if not datapath:
+            pass
+        else:
+            with open(datapath, "r") as file:
+                self.dataset = json.load(file)
 
         self.rank = np.max(
             np.array(
@@ -78,8 +60,6 @@ class TimeSeriesDataset:
                     for item in self.dataset
                 ]
             )
-        else:
-            self.max_d = 1
 
         for key in self.dataset:
             self.dataset[key]["values"] = np.array(self.dataset[key]["values"])
@@ -178,12 +158,6 @@ class TimeSeriesDataset:
 def featurize_timeseries(dataset):
     """
     Extract features from a TimeSeriesDataset
-
-    Args:
-        dataset (TimeSeriesDataset): a dataset of time series
-
-    Returns:
-        extracted_features (pd.DataFrame): a dataframe of extracted features
     """
     if not _has_tsfresh:
         raise ImportError("Install the package tsfresh in order to use this function.")
@@ -201,71 +175,9 @@ def featurize_timeseries(dataset):
     return extracted_features
 
 
-def convert_json_to_gzip(fpath, encoding="utf-8", delete_original=False):
-    """
-    Convert a json file to a gzip file in a format that can be easily read by the
-    `dysts` package. By default, the gzip file will be saved with the same name and
-    in the same directory as the json file, but with a ".gz" extension.
-
-    Args:
-        fpath (str): Path to the json file to be converted
-        encoding (str): Encoding to use when writing the gzip file
-        delete_original (bool): Whether to delete the original json file after
-            conversion. Default is False.
-
-    Returns:
-        None
-    
-    """
-    if os.path.splitext(fpath)[1] == ".gz":
-        warnings.warn("File already gzipped, exiting without conversion")
-        return None
-    
-    with open(fpath, 'r') as file:
-        data = json.load(file)
-        
-    with gzip.open(fpath + ".gz", 'wt', encoding=encoding) as file:
-        json.dump(data, file, indent=4)
-
-    if delete_original:
-        os.remove(fpath)
-
-import zipfile
-def load_json(fpath):
-    """
-    Load either a raw, zipped, or gzipped json file.
-
-    Args:
-        fpath (str): Path to the json file to be loaded
-
-    Returns:
-        data (dict): Dictionary containing the data from the json file
-    """
-    if os.path.splitext(fpath)[1] == ".json":
-        with open(fpath, 'r') as file:
-            data = json.load(file)
-        return data
-    elif os.path.splitext(fpath)[1] == ".gz":
-        with gzip.open(fpath, 'rt') as file:
-            data = json.load(file)
-        return data
-    elif os.path.splitext(fpath)[1] == ".zip":
-        with zipfile.ZipFile(fpath, 'r') as file:
-            data = json.load(file.open(file.namelist()[0]))
-        return data
-    else:
-        raise ValueError("File must be a json or gzipped json file")
-
 def load_file(filename):
     """Locate and import from the module data directory"""
-    if not _has_data:
-        warnings.warn(
-                    "Data module not found. To use precomputed datasets, "+ \
-                        "please install the external data repository "+ \
-                            "\npip install git+https://github.com/williamgilpin/dysts_data"
-        )
-    # base_path = pkg_resources.resource_filename("dysts", "data")
-    base_path = get_datapath()
+    base_path = pkg_resources.resource_filename("dysts", "data")
     data_path = os.path.join(base_path, filename)
     dataset = TimeSeriesDataset(data_path)
     return dataset
@@ -309,9 +221,6 @@ def load_dataset(
         name_parts = list(os.path.splitext(data_path))
         data_path = "".join(name_parts[:-1] + ["_noise"] + [name_parts[-1]])
     
-    ## append a .gz extension if it's not there already
-    if os.path.splitext(data_path)[1] != ".gz":
-        data_path += ".gz"
     dataset = load_file(data_path)
     
     split_point = int(split_fraction * period) * granval
